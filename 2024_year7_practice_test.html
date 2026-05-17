@@ -327,11 +327,11 @@ const TEST = {
               prompt: 'From the integers <strong>−8, −4, −1, 2, 6</strong>',
               parts: [
                 { id: 'a', label: 'a)', prompt: 'State three integers that multiply to give −12.',
-                  inputType: 'text', placeholder: 'e.g. -1, 2, 6',
+                  inputType: 'text', placeholder: 'three numbers separated by commas',
                   correct: '−1, 2, 6', alts: ['-1, 2, 6','-1,2,6','-1 2 6'],
                   working: '−1 × 2 × 6 = −12' },
                 { id: 'b', label: 'b)', prompt: 'State three integers that add to −3.',
-                  inputType: 'text', placeholder: 'e.g. -4, -1, 2',
+                  inputType: 'text', placeholder: 'three numbers separated by commas',
                   correct: '−4, −1, 2', alts: ['-4, -1, 2','-4,-1,2'],
                   working: '−4 + (−1) + 2 = −3' },
               ],
@@ -433,7 +433,7 @@ const TEST = {
             {
               id: 'ca1', num: 1, marks: 1, type: 'text',
               prompt: 'Arrange the following integers in <strong>ascending</strong> order: 15, −2, 0, −20, 5, 100',
-              placeholder: 'e.g. -20, -2, 0, 5, 15, 100',
+              placeholder: 'smallest, …, largest',
               correct: '−20, −2, 0, 5, 15, 100',
               alts: ['-20, -2, 0, 5, 15, 100','-20,-2,0,5,15,100','−20,−2,0,5,15,100'],
               working: 'Ascending = smallest to largest. Most negative is smallest: −20 < −2 < 0 < 5 < 15 < 100.',
@@ -478,7 +478,7 @@ const TEST = {
             {
               id: 'ca6', num: 6, marks: 1, type: 'text',
               prompt: 'Change this improper fraction into a mixed numeral: 71/10 =',
-              placeholder: 'e.g. 7 1/10',
+              placeholder: 'e.g. 3 2/5',
               correct: '7 1/10',
               alts: ['7 1/10','7  1/10','7 and 1/10','71/10'],
               working: '71 ÷ 10 = 7 remainder 1. So 71/10 = 7 1/10.',
@@ -486,7 +486,7 @@ const TEST = {
             {
               id: 'ca7', num: 7, marks: 1, type: 'text',
               prompt: 'Simplify this fraction: 36/48 =',
-              placeholder: 'e.g. 3/4',
+              placeholder: 'e.g. 5/9',
               correct: '3/4',
               alts: ['3/4','¾'],
               working: 'Divide top and bottom by 12 (or by 2 three times, or by 4 then 3): 36÷12=3, 48÷12=4. So 36/48 = 3/4.',
@@ -494,7 +494,7 @@ const TEST = {
             {
               id: 'ca8', num: 8, marks: 1, type: 'text',
               prompt: 'Change this mixed numeral into an improper fraction: 6¾ =',
-              placeholder: 'e.g. 27/4',
+              placeholder: 'e.g. 17/5',
               correct: '27/4',
               alts: ['27/4'],
               working: '(6 × 4 + 3) / 4 = (24 + 3) / 4 = 27/4.',
@@ -502,7 +502,7 @@ const TEST = {
             {
               id: 'ca9', num: 9, marks: 2, type: 'text',
               prompt: 'What fraction of 2 hours is 40 minutes? Make sure your answer is written in <strong>simplest</strong> form.',
-              placeholder: 'e.g. 1/3',
+              placeholder: 'a fraction in simplest form',
               correct: '1/3',
               alts: ['1/3','⅓'],
               working: '2 hours = 120 minutes. 40/120 = 4/12 = 1/3.',
@@ -517,23 +517,23 @@ const TEST = {
               prompt: 'Complete these statements:',
               parts: [
                 { id: 'a', label: 'a)', prompt: 'Supplementary angles add to ___',
-                  inputType: 'text', placeholder: 'e.g. 180°',
+                  inputType: 'text', placeholder: 'a number of degrees',
                   correct: '180°', alts: ['180','180°','180 degrees'],
                   working: 'Supplementary = sup180.' },
                 { id: 'b', label: 'b)', prompt: 'Complementary angles add to ___',
-                  inputType: 'text', placeholder: 'e.g. 90°',
+                  inputType: 'text', placeholder: 'a number of degrees',
                   correct: '90°', alts: ['90','90°','90 degrees'],
                   working: 'Complementary = corner of 90°.' },
                 { id: 'c', label: 'c)', prompt: 'In parallel lines, alternate angles are ___',
-                  inputType: 'text', placeholder: 'e.g. equal',
+                  inputType: 'text', placeholder: 'a word or short phrase',
                   correct: 'equal', alts: ['equal','the same'],
                   working: 'Alternate angles (Z-shape) are equal.' },
                 { id: 'd', label: 'd)', prompt: 'In parallel lines, corresponding angles are ___',
-                  inputType: 'text', placeholder: 'e.g. equal',
+                  inputType: 'text', placeholder: 'a word or short phrase',
                   correct: 'equal', alts: ['equal','the same'],
                   working: 'Corresponding angles (F-shape) are equal.' },
                 { id: 'e', label: 'e)', prompt: 'In parallel lines, co-interior angles add to ___',
-                  inputType: 'text', placeholder: 'e.g. 180°',
+                  inputType: 'text', placeholder: 'a number of degrees',
                   correct: '180°', alts: ['180','180°','180 degrees'],
                   working: 'Co-interior angles (C-shape, same side of transversal) add to 180°.' },
               ],
@@ -867,7 +867,7 @@ function renderQuestion(q) {
   } else if (q.type === 'numericPlusReason') {
     body = `
       <div style="display:grid;gap:8px;max-width:360px">
-        <input type="text" class="answer-input small" data-q="${q.id}.value" placeholder="Answer (e.g. 205°)"/>
+        <input type="text" class="answer-input small" data-q="${q.id}.value" placeholder="Answer"/>
         <textarea class="answer-input" data-q="${q.id}.reason" placeholder="Your reasoning" style="min-height:50px"></textarea>
       </div>`;
   } else if (q.type === 'multipart') {
