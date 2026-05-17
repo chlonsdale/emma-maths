@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2023 Year 7 Maths — Practice Test</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: linear-gradient(135deg, #fce7f3 0%, #e0e7ff 100%);
+    min-height: 100vh;
+    padding: 16px;
+    color: #1f2937;
+    line-height: 1.55;
+  }
+  .container { max-width: 920px; margin: 0 auto; }
+
+  header.cover {
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  header.cover h1 { color: #7c3aed; font-size: 26px; margin-bottom: 6px; }
+  header.cover .school { font-size: 16px; color: #6b7280; margin-bottom: 16px; }
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin: 20px 0;
+  }
+  .meta-pill {
+    background: #f5f3ff; padding: 10px 14px; border-radius: 10px;
+    color: #5b21b6; font-size: 14px;
+  }
+  .meta-pill .num { font-size: 18px; font-weight: 700; display: block; }
+
+  .instructions {
+    background: #fef3c7; border-left: 4px solid #f59e0b;
+    padding: 14px 18px; border-radius: 8px;
+    text-align: left; margin: 20px 0;
+    font-size: 14px; color: #78350f;
+  }
+  .instructions h3 { color: #92400e; margin-bottom: 8px; font-size: 15px; }
+  .instructions ul { padding-left: 20px; }
+  .instructions li { margin: 4px 0; }
+
+  .btn {
+    background: #7c3aed; color: white; border: none;
+    padding: 14px 28px; border-radius: 10px; font-size: 16px;
+    font-weight: 600; cursor: pointer; transition: background 0.15s, transform 0.15s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn:hover { background: #6d28d9; transform: translateY(-1px); }
+  .btn:disabled { background: #c4b5fd; cursor: not-allowed; transform: none; }
+  .btn-secondary { background: #e5e7eb; color: #1f2937; }
+  .btn-secondary:hover { background: #d1d5db; }
+  .btn-success { background: #10b981; }
+  .btn-success:hover { background: #059669; }
+  .btn-danger { background: #ef4444; }
+  .btn-danger:hover { background: #dc2626; }
+  .btn-small { padding: 8px 14px; font-size: 14px; }
+
+  .section-card {
+    background: white;
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    margin-top: 20px;
+  }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 3px solid #ede9fe; padding-bottom: 12px; margin-bottom: 16px;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .section-header h2 { color: #7c3aed; font-size: 20px; }
+  .section-header .badge {
+    background: #ede9fe; color: #5b21b6;
+    padding: 6px 14px; border-radius: 14px;
+    font-size: 13px; font-weight: 600;
+  }
+  .topic-banner {
+    background: #f3f4f6; padding: 10px 16px; border-radius: 8px;
+    margin: 18px 0 10px 0; font-weight: 600; color: #4b5563;
+  }
+
+  .question {
+    border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 18px; margin: 12px 0;
+    background: #fafaf9;
+  }
+  .question-meta {
+    display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .q-num {
+    background: #7c3aed; color: white;
+    min-width: 32px; height: 32px;
+    border-radius: 8px; display: inline-flex;
+    align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; padding: 0 8px;
+  }
+  .q-marks {
+    background: #f3f4f6; color: #6b7280;
+    padding: 4px 10px; border-radius: 10px;
+    font-size: 12px; font-weight: 600; margin-left: auto;
+  }
+  .q-prompt {
+    font-size: 15px; color: #1f2937;
+    margin-bottom: 10px;
+  }
+  .q-prompt strong { color: #5b21b6; }
+
+  .answer-input {
+    width: 100%; padding: 10px 12px;
+    border: 2px solid #ddd6fe; border-radius: 8px;
+    font-size: 15px; background: white;
+    font-family: inherit;
+  }
+  .answer-input:focus { outline: none; border-color: #7c3aed; }
+  .answer-input.small { max-width: 200px; }
+  .answer-input.tiny { max-width: 100px; display: inline-block; }
+  textarea.answer-input { resize: vertical; min-height: 60px; font-family: inherit; }
+
+  .mc-options {
+    display: grid; gap: 8px; margin-top: 6px;
+  }
+  .mc-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; border: 2px solid #e5e7eb;
+    border-radius: 8px; background: white; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mc-option:hover { border-color: #c4b5fd; background: #faf5ff; }
+  .mc-option input[type="radio"] { accent-color: #7c3aed; }
+  .mc-option.selected {
+    border-color: #7c3aed; background: #f5f3ff;
+  }
+  .mc-letter {
+    background: #ede9fe; color: #5b21b6;
+    width: 28px; height: 28px; border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+  }
+  .mc-option.selected .mc-letter { background: #7c3aed; color: white; }
+
+  .multipart .part {
+    margin: 12px 0; padding-left: 22px;
+    border-left: 3px solid #ede9fe;
+  }
+  .part-label {
+    font-weight: 600; color: #6b7280;
+    margin-bottom: 6px; font-size: 14px;
+  }
+
+  .diagram {
+    background: white; border: 1px solid #e5e7eb;
+    border-radius: 10px; padding: 16px; margin: 12px 0;
+    display: flex; justify-content: center;
+  }
+  .diagram svg { max-width: 100%; height: auto; }
+
+  .draw-note {
+    background: #fef3c7; padding: 10px 14px;
+    border-radius: 8px; font-size: 13px;
+    color: #78350f; margin: 8px 0;
+  }
+  .draw-note strong { color: #92400e; }
+
+  .nav-actions {
+    display: flex; justify-content: space-between; gap: 10px;
+    margin-top: 20px; flex-wrap: wrap;
+  }
+
+  /* Marking mode */
+  .marking-card { background: white; border-radius: 16px; padding: 26px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .marking-instructions {
+    background: #ecfdf5; border-left: 4px solid #10b981;
+    padding: 14px 18px; border-radius: 8px;
+    color: #065f46; font-size: 14px; margin-bottom: 16px;
+  }
+  .marking-instructions strong { color: #064e3b; }
+
+  .mark-q {
+    border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 16px; margin: 12px 0; background: #fafaf9;
+  }
+  .mark-q-header {
+    display: flex; gap: 10px; align-items: center; margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .mark-q-body { font-size: 14px; }
+  .answer-row {
+    display: grid; grid-template-columns: auto 1fr; gap: 8px 14px;
+    margin: 10px 0; align-items: start;
+  }
+  .answer-label {
+    font-weight: 600; color: #6b7280; font-size: 13px;
+    padding-top: 6px;
+  }
+  .answer-value {
+    background: white; padding: 8px 12px;
+    border: 1px solid #e5e7eb; border-radius: 6px;
+    min-height: 36px; font-size: 14px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .answer-value.correct-ans {
+    background: #ecfdf5; border-color: #10b981;
+    color: #065f46;
+  }
+  .answer-value.her-ans { background: #f5f3ff; border-color: #c4b5fd; }
+  .answer-value em { color: #9ca3af; font-style: italic; }
+  .working {
+    font-size: 13px; color: #6b7280; margin-top: 6px;
+    padding: 8px 12px; background: #fffbeb; border-radius: 6px;
+    border-left: 3px solid #f59e0b;
+  }
+  .working strong { color: #78350f; }
+
+  .mark-buttons {
+    display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+    align-items: center;
+  }
+  .mark-btn {
+    border: 2px solid #e5e7eb; background: white;
+    padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    font-weight: 600; font-size: 13px;
+    transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .mark-btn:hover { border-color: #c4b5fd; }
+  .mark-btn.right.active {
+    background: #10b981; border-color: #10b981; color: white;
+  }
+  .mark-btn.half.active {
+    background: #f59e0b; border-color: #f59e0b; color: white;
+  }
+  .mark-btn.wrong.active {
+    background: #ef4444; border-color: #ef4444; color: white;
+  }
+  .mark-status {
+    margin-left: auto; font-size: 13px; color: #6b7280; font-weight: 600;
+  }
+  .mark-status.scored { color: #065f46; }
+
+  /* Results page */
+  .results-card {
+    background: white; border-radius: 18px; padding: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .big-score {
+    font-size: 56px; font-weight: 800; color: #7c3aed;
+    margin: 16px 0;
+  }
+  .big-score .total { font-size: 32px; color: #9ca3af; }
+  .percent {
+    font-size: 20px; font-weight: 700;
+    background: #ede9fe; color: #5b21b6;
+    padding: 6px 16px; border-radius: 20px;
+    display: inline-block;
+  }
+  .breakdown {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px; margin: 24px 0;
+  }
+  .breakdown-cell {
+    background: #f9fafb; padding: 14px; border-radius: 10px;
+    text-align: left;
+  }
+  .breakdown-cell h4 { color: #5b21b6; font-size: 13px; margin-bottom: 6px; }
+  .breakdown-cell .score { font-size: 18px; font-weight: 700; color: #1f2937; }
+  .breakdown-cell .meta { font-size: 12px; color: #6b7280; }
+
+  .weak-spots {
+    background: #fef3c7; border-left: 4px solid #f59e0b;
+    padding: 14px 18px; border-radius: 8px;
+    text-align: left; margin-top: 16px;
+    font-size: 14px; color: #78350f;
+  }
+  .weak-spots h4 { color: #92400e; margin-bottom: 8px; }
+  .weak-spots ul { padding-left: 20px; }
+
+  .section-progress {
+    background: #ede9fe; color: #5b21b6;
+    padding: 8px 18px; border-radius: 20px;
+    font-weight: 600; font-size: 14px;
+    text-align: center;
+    margin: 0 auto 14px auto;
+    display: block;
+    width: fit-content;
+    max-width: 90%;
+  }
+  .section-summary {
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+    border: 2px solid #c4b5fd;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .section-summary .label {
+    font-size: 14px; color: #5b21b6; font-weight: 600;
+  }
+  .section-summary .big-score-inline {
+    font-size: 28px; font-weight: 800; color: #7c3aed;
+  }
+  .section-summary .big-score-inline .total {
+    color: #a78bfa; font-size: 20px;
+  }
+  .section-summary .pct-pill {
+    background: white; color: #5b21b6;
+    padding: 4px 12px; border-radius: 12px;
+    font-size: 13px; font-weight: 700;
+  }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .section-card, header.cover, .marking-card, .results-card { padding: 18px; }
+    header.cover h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container" id="root"></div>
+
+<script>
+// ============================================================
+// Test data — 2023 Year 7 Task 2 (38 marks)
+// ============================================================
+const TEST = {
+  year: 2023,
+  title: '2023 Year 7 Maths — Practice Test',
+  school: 'Year 7 · Task 2 · Term 2',
+  topicsCovered: 'Whole Numbers, Integers & Statistics',
+  sections: [
+    {
+      id: 's1', name: 'Section I — Non-Calculator', marks: 14, timing: '15 minutes',
+      topics: [
+        {
+          name: 'Whole Numbers',
+          questions: [
+            {
+              id: 'nc1', num: 1, marks: 1, type: 'text',
+              prompt: 'Jason\'s brother decided to buy a car and paid <strong>$572 per month for 30 months</strong>. How much money would the car cost him in total?',
+              placeholder: '$ total',
+              correct: '$17,160',
+              alts: ['17160','$17160','17,160','$17,160'],
+              working: '$572 × 30 = $17,160. (Or: 572 × 3 = 1716, then × 10 = 17,160.)',
+            },
+            {
+              id: 'nc2', num: 2, marks: 1, type: 'text',
+              prompt: 'A group of 3 friends decided to share the cost of a pair of Air Pods which costs <strong>$441 after discount</strong>. If each friend contributes equally, how much will each person pay?',
+              placeholder: '$ each',
+              correct: '$147',
+              alts: ['147','$147','147 each','$147 each'],
+              working: '$441 ÷ 3 = $147 each.',
+            },
+            {
+              id: 'nc3', num: 3, marks: 1, type: 'text',
+              prompt: 'Between which two consecutive whole numbers is the value of <strong>√60</strong>?',
+              placeholder: 'e.g. 5 and 6',
+              correct: '7 and 8',
+              alts: ['7 and 8','7,8','7-8','7 & 8','between 7 and 8','7&8'],
+              working: '7² = 49 (less than 60). 8² = 64 (more than 60). So √60 is between 7 and 8.',
+            },
+            {
+              id: 'nc4', num: 4, marks: 2, type: 'text',
+              prompt: 'One clock chimes every 12 minutes and another chimes every 20 minutes. If they both chime together at <strong>12:00 pm</strong>, what time will they chime together again?',
+              placeholder: 'a time',
+              correct: '1:00 pm',
+              alts: ['1pm','1:00pm','1:00 pm','13:00','60 minutes later','60 mins'],
+              working: 'LCM of 12 and 20 = 60 minutes. 12:00 pm + 60 min = 1:00 pm.',
+            },
+          ],
+        },
+        {
+          name: 'Integers',
+          questions: [
+            {
+              id: 'nc5', num: 5, marks: 3, type: 'multipart',
+              prompt: 'Solve:',
+              parts: [
+                { id: 'a', label: 'a.', prompt: '7 + (−8) =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '−1', alts: ['-1'], working: '7 − 8 = −1.' },
+                { id: 'b', label: 'b.', prompt: '7 − 15 =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '−8', alts: ['-8'], working: '7 − 15 = −8.' },
+                { id: 'c', label: 'c.', prompt: '−6 × (−5) =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '30', working: 'Negative × negative = positive. 6 × 5 = 30.' },
+              ],
+            },
+            {
+              id: 'nc6', num: 6, marks: 3, type: 'multipart',
+              prompt: 'Evaluate (show working — there\'s a mark for clean working as well as the right answer):',
+              parts: [
+                { id: 'a', label: 'a.', prompt: '12 + (−3) × 9 =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '−15', alts: ['-15'],
+                  working: 'Multiplication first: −3 × 9 = −27. Then 12 + (−27) = 12 − 27 = −15.' },
+                { id: 'b', label: 'b.', prompt: '[(−3)² + 5] ÷ (−7) =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '−2', alts: ['-2'],
+                  working: '(−3)² = 9. 9 + 5 = 14. 14 ÷ (−7) = −2.' },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'Collecting & Presenting Data',
+          questions: [
+            {
+              id: 'nc7', num: 7, marks: 2, type: 'multipart',
+              prompt: 'Farmer John\'s egg sales for the week (bar graph below):',
+              diagram: 'nc7',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'Which day did Farmer John sell the least eggs?',
+                  inputType: 'text', placeholder: 'a day of the week',
+                  correct: 'Wednesday',
+                  alts: ['wednesday','wed'],
+                  working: 'Wednesday\'s bar is the shortest (1500 eggs).' },
+                { id: 'b', label: 'b)', prompt: 'What is the difference in eggs sold between Thursday and Friday?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '750',
+                  working: 'Friday 3500 − Thursday 2750 = 750.' },
+              ],
+            },
+            {
+              id: 'nc8', num: 8, marks: 1, type: 'text', inputType: 'longText',
+              prompt: 'A graph titled "Average Female Height per Country" uses cartoon figures of women, each <strong>scaled in size</strong> by their height. Why is this graph misleading?',
+              placeholder: 'Your explanation',
+              correct: 'Pictures increase in BOTH width and height (not just height)',
+              alts: ['width and height','both dimensions','area','width','dimensions','area not height','scaled both ways'],
+              working: 'When figures are scaled in both dimensions, the visual AREA grows much faster than the actual height difference — making small height differences look huge.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 's2', name: 'Section II — Calculator Allowed', marks: 24, timing: '25 minutes',
+      topics: [
+        {
+          name: 'Frequency & Stem-and-Leaf',
+          questions: [
+            {
+              id: 'ca1', num: 1, marks: 3, type: 'draw',
+              prompt: 'A die was rolled 20 times. Results: 1→3, 2→0, 3→5, 4→4, 5→6, 6→2. Draw <strong>both</strong> a frequency histogram <strong>and</strong> polygon to display this data. Include a title and labels on both axes.',
+              diagram: 'ca1',
+              instruction: 'On paper: bars at heights 3, 0, 5, 4, 6, 2 above results 1–6. Title (e.g. "Die Toss"), x-axis "Result", y-axis "Frequency". Add a polygon by connecting the midpoints of the bar tops.',
+              correctDesc: 'Frequency histogram (bars touching) with polygon overlay, title, and labelled axes.',
+              working: 'Histogram bars touch each other (not column graph with gaps). The polygon connects midpoints of bar tops. Mark scheme: 1 for title, 1 for histogram, 1 for polygon.',
+            },
+            {
+              id: 'ca2', num: 2, marks: 4, type: 'multipart',
+              prompt: 'Stem-and-leaf plot of Year 7 maths exam results:',
+              diagram: 'ca2',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'What value could X represent?',
+                  inputType: 'text', placeholder: 'a digit (or range)',
+                  correct: '4, 5, 6, 7, 8 or 9',
+                  alts: ['4','5','6','7','8','9','4-9','4,5,6,7,8,9','4 to 9','4–9'],
+                  working: 'X sits between 4 and 9 in the row "3 | 2 4 X 9" — and the plot is ORDERED. So X could be 4, 5, 6, 7, 8 or 9.' },
+                { id: 'b', label: 'b)', prompt: 'How many students sat the test?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '16',
+                  working: 'Count all leaves: 5 + 4 + 4 + 2 + 1 = 16.' },
+                { id: 'c', label: 'c)', prompt: 'What is the highest mark?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '62',
+                  working: 'Highest stem-leaf pair: 6 | 2 → 62.' },
+                { id: 'd', label: 'd)', prompt: 'What is the most common mark in the class?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '29',
+                  working: '29 appears 3 times in the row "2 | 5 8 9 9 9" — more than any other value.' },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'Dot Plots & Bar Graphs',
+          questions: [
+            {
+              id: 'ca3', num: 3, marks: 4, type: 'multipart',
+              prompt: 'Dot plot of Year 4 spelling quiz results (scores out of 10):',
+              diagram: 'ca3',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'How many students got a score of 6?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '4',
+                  working: 'Count the dots above 6 on the dot plot.' },
+                { id: 'b', label: 'b)', prompt: 'What is the most common score?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '8',
+                  working: '8 has the tallest stack of dots.' },
+                { id: 'c', label: 'c)', prompt: 'What is the range of scores?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '8',
+                  working: 'Range = Highest − Lowest = 10 − 2 = 8.' },
+                { id: 'd', label: 'd)', prompt: 'What is the median score?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '7',
+                  working: '24 students total. Median = mean of 12th and 13th scores when sorted = 7.' },
+              ],
+            },
+            {
+              id: 'ca4', num: 4, marks: 2, type: 'multipart',
+              prompt: 'Divided bar graph of 30 students\' favourite sport: rugby (12), soccer (6), basketball (4), AFL (8).',
+              diagram: 'ca4',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'What fraction chose soccer? (Simplest form.)',
+                  inputType: 'text', placeholder: 'a fraction',
+                  correct: '1/5',
+                  alts: ['1/5','⅕','6/30'],
+                  working: '6 out of 30. 6/30 simplifies to 1/5.' },
+                { id: 'b', label: 'b)', prompt: 'What fraction chose either rugby or AFL? (Simplest form.)',
+                  inputType: 'text', placeholder: 'a fraction',
+                  correct: '2/3',
+                  alts: ['2/3','⅔','20/30'],
+                  working: 'Rugby (12) + AFL (8) = 20 out of 30. 20/30 simplifies to 2/3.' },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'Sector Graphs & Frequency Tables',
+          questions: [
+            {
+              id: 'ca5', num: 5, marks: 3, type: 'multipart',
+              prompt: 'Sector graph of girls\' school sports. Angles: Hockey 100°, Netball 80°, Softball 66°, Basketball 44°, Tennis 40°, Soccer ?°.',
+              diagram: 'ca5',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'Which sport is the most popular?',
+                  inputType: 'text', placeholder: 'a sport',
+                  correct: 'Hockey',
+                  alts: ['hockey'],
+                  working: 'Hockey has the largest slice (100°).' },
+                { id: 'b', label: 'b)', prompt: 'If there are 540 girls at the school, how many play tennis?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '60',
+                  working: 'Tennis = 40°/360° of 540 = 40 ÷ 360 × 540 = 60.' },
+                { id: 'c', label: 'c)', prompt: 'What angle represents soccer at the centre?',
+                  inputType: 'text', placeholder: 'degrees',
+                  correct: '30°',
+                  alts: ['30','30°','30 degrees'],
+                  working: '360 − 100 − 80 − 66 − 44 − 40 = 30°.' },
+              ],
+            },
+            {
+              id: 'ca6', num: 6, marks: 8, type: 'multipart',
+              prompt: 'Carol\'s 15 friends\' weekly allowances ($): <strong>12, 10, 15, 14, 15, 15, 15, 15, 11, 11, 13, 15, 13, 12, 12</strong>',
+              parts: [
+                { id: 'a-freq', label: 'a)', prompt: 'Frequency column (commas, in order from $10 to $15).',
+                  inputType: 'text', placeholder: 'e.g. 1, 2, 3, 4, 5, 6',
+                  correct: '1, 2, 3, 2, 1, 6',
+                  alts: ['1,2,3,2,1,6','1 2 3 2 1 6'],
+                  working: '$10×1, $11×2, $12×3, $13×2, $14×1, $15×6.' },
+                { id: 'a-fx', label: 'a)', prompt: 'fx column (each score × frequency, commas, in order).',
+                  inputType: 'text', placeholder: 'e.g. 10, 22, 36, ...',
+                  correct: '10, 22, 36, 26, 14, 90',
+                  alts: ['10,22,36,26,14,90'],
+                  working: '10×1=10, 11×2=22, 12×3=36, 13×2=26, 14×1=14, 15×6=90.' },
+                { id: 'a-totalf', label: 'a)', prompt: 'Total frequency (Σf).',
+                  inputType: 'numeric', placeholder: 'total',
+                  correct: '15',
+                  working: '1+2+3+2+1+6 = 15.' },
+                { id: 'a-totalfx', label: 'a)', prompt: 'Total fx (Σfx).',
+                  inputType: 'numeric', placeholder: 'total',
+                  correct: '198',
+                  working: '10+22+36+26+14+90 = 198.' },
+                { id: 'b', label: 'b)', prompt: 'Find the median allowance.',
+                  inputType: 'text', placeholder: '$ amount',
+                  correct: '$13',
+                  alts: ['13','$13','13 dollars'],
+                  working: '15 values total. Median = middle (8th) value. Sorted: 10, 11, 11, 12, 12, 12, 13, 13, 14, 15, 15, 15, 15, 15, 15. 8th = 13.' },
+                { id: 'c', label: 'c)', prompt: 'What is the modal score (most common)?',
+                  inputType: 'text', placeholder: '$ amount',
+                  correct: '$15',
+                  alts: ['15','$15','15 dollars'],
+                  working: '$15 appears 6 times — the most common.' },
+                { id: 'd', label: 'd)', prompt: 'Calculate the mean allowance (to 1 decimal place).',
+                  inputType: 'text', placeholder: '$ amount',
+                  correct: '$13.2',
+                  alts: ['13.2','$13.2','13.20','$13.20'],
+                  working: 'Total fx = 198. Mean = 198 ÷ 15 = 13.2.' },
+                { id: 'e', label: 'e)', prompt: 'Carol\'s current allowance is $9. Which measure (mean, median, mode) should she use to ask for a raise? Reasons.',
+                  inputType: 'longText', placeholder: 'Your answer + reasons',
+                  correct: 'Median ($13) — closest to the typical allowance',
+                  alts: ['median','median or mean','mean','mode'],
+                  working: 'Median ($13) is a fair choice — it sits in the middle and isn\'t inflated by the six $15s. Mode ($15) is also defensible. Either way, all three are higher than $9, so she has an argument!' },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+// ============================================================
+// State
+// ============================================================
+const state = {
+  answers: {},  // qId or qId.partId → string answer
+  marks: {},    // qId or qId.partId → 'right' | 'half' | 'wrong'
+  mode: 'cover', // cover | test | marking | results
+  currentSection: 0,
+};
+
+// ============================================================
+// Diagram SVGs
+// ============================================================
+const DIAGRAMS = {
+  // Q7 Non-Calc — Bar graph of eggs sold (Mon 2000, Tue 2750, Wed 1500, Thu 2750, Fri 3500)
+  nc7: `<svg viewBox="0 0 380 250" width="100%" style="max-width:420px" xmlns="http://www.w3.org/2000/svg">
+    <text x="190" y="14" text-anchor="middle" font-size="12" font-weight="bold">Eggs sold by Farmer John</text>
+    <!-- Y axis -->
+    <line x1="60" y1="25" x2="60" y2="210" stroke="#1f2937" stroke-width="1.5"/>
+    <!-- X axis -->
+    <line x1="60" y1="210" x2="360" y2="210" stroke="#1f2937" stroke-width="1.5"/>
+    <!-- Y gridlines + labels (3500 max, 500 increments → 7 ticks; map: 0→210, 3500→25; scale = 185/3500 ≈ 0.0529 px/egg) -->
+    <g stroke="#e5e7eb" stroke-width="1">
+      <line x1="60" y1="184" x2="360" y2="184"/>
+      <line x1="60" y1="157" x2="360" y2="157"/>
+      <line x1="60" y1="131" x2="360" y2="131"/>
+      <line x1="60" y1="104" x2="360" y2="104"/>
+      <line x1="60" y1="78" x2="360" y2="78"/>
+      <line x1="60" y1="51" x2="360" y2="51"/>
+      <line x1="60" y1="25" x2="360" y2="25"/>
+    </g>
+    <g font-size="9" fill="#6b7280" text-anchor="end">
+      <text x="55" y="213">0</text>
+      <text x="55" y="187">500</text>
+      <text x="55" y="160">1000</text>
+      <text x="55" y="134">1500</text>
+      <text x="55" y="107">2000</text>
+      <text x="55" y="81">2500</text>
+      <text x="55" y="54">3000</text>
+      <text x="55" y="28">3500</text>
+    </g>
+    <!-- Y axis title -->
+    <text x="20" y="118" text-anchor="middle" font-size="10" font-weight="bold" transform="rotate(-90 20 118)">Eggs sold</text>
+    <!-- Bars (width 40, gap 12, start at x=75) -->
+    <!-- Mon 2000 → height = 2000*0.0529 = 106 → top y = 210-106 = 104 -->
+    <rect x="75" y="104" width="40" height="106" fill="#7c3aed" opacity="0.75" stroke="#5b21b6"/>
+    <!-- Tue 2750 → 145.5 → y = 64.5 -->
+    <rect x="130" y="64" width="40" height="146" fill="#7c3aed" opacity="0.75" stroke="#5b21b6"/>
+    <!-- Wed 1500 → 79 → y = 131 -->
+    <rect x="185" y="131" width="40" height="79" fill="#7c3aed" opacity="0.75" stroke="#5b21b6"/>
+    <!-- Thu 2750 → y = 64 -->
+    <rect x="240" y="64" width="40" height="146" fill="#7c3aed" opacity="0.75" stroke="#5b21b6"/>
+    <!-- Fri 3500 → y = 25 -->
+    <rect x="295" y="25" width="40" height="185" fill="#7c3aed" opacity="0.75" stroke="#5b21b6"/>
+    <!-- Day labels -->
+    <g font-size="10" text-anchor="middle" fill="#1f2937">
+      <text x="95" y="225">Mon</text>
+      <text x="150" y="225">Tue</text>
+      <text x="205" y="225">Wed</text>
+      <text x="260" y="225">Thu</text>
+      <text x="315" y="225">Fri</text>
+    </g>
+    <text x="200" y="244" text-anchor="middle" font-size="10" font-weight="bold">Day</text>
+  </svg>`,
+
+  // Q1 Calc — Die frequency table
+  ca1: `<table style="border-collapse:collapse;font-family:inherit;font-size:14px;margin:0 auto;border:1px solid #1f2937">
+    <thead><tr style="background:#f3f4f6">
+      <th style="border:1px solid #1f2937;padding:6px 18px">Result</th>
+      <th style="border:1px solid #1f2937;padding:6px 18px">Frequency (f)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">1</td><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">3</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">2</td><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">0</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">3</td><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">5</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">4</td><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">4</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">5</td><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">6</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">6</td><td style="border:1px solid #1f2937;padding:6px 18px;text-align:center">2</td></tr>
+    </tbody>
+  </table>`,
+
+  // Q2 Calc — Stem-and-leaf plot
+  ca2: `<table style="border-collapse:collapse;font-family:'Courier New',monospace;font-size:15px;margin:0 auto;border:1px solid #1f2937;background:white">
+    <thead><tr style="background:#f3f4f6;font-family:inherit">
+      <th style="border:1px solid #1f2937;padding:4px 12px">Stem</th>
+      <th style="border:1px solid #1f2937;padding:4px 12px">Leaf</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid #1f2937;padding:5px 16px;text-align:center;font-weight:bold">2</td><td style="border:1px solid #1f2937;padding:5px 16px;letter-spacing:6px">5 8 9 9 9</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:5px 16px;text-align:center;font-weight:bold">3</td><td style="border:1px solid #1f2937;padding:5px 16px;letter-spacing:6px">2 4 X 9</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:5px 16px;text-align:center;font-weight:bold">4</td><td style="border:1px solid #1f2937;padding:5px 16px;letter-spacing:6px">1 1 2 3</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:5px 16px;text-align:center;font-weight:bold">5</td><td style="border:1px solid #1f2937;padding:5px 16px;letter-spacing:6px">3 5</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:5px 16px;text-align:center;font-weight:bold">6</td><td style="border:1px solid #1f2937;padding:5px 16px;letter-spacing:6px">2</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px;color:#6b7280;text-align:center;margin-top:6px;font-style:italic">e.g. "2 | 5" means 25. The plot is ORDERED.</p>`,
+
+  // Q3 Calc — Dot plot (Spelling quiz, scores 0-10)
+  // Approximate distribution: 2→1, 3→2, 4→2, 5→2, 6→4, 7→5, 8→6, 9→1, 10→1 (total 24)
+  ca3: `<svg viewBox="0 0 420 220" width="100%" style="max-width:440px" xmlns="http://www.w3.org/2000/svg">
+    <text x="210" y="14" text-anchor="middle" font-size="12" font-weight="bold">Spelling quiz results</text>
+    <!-- Number line -->
+    <line x1="30" y1="190" x2="400" y2="190" stroke="#1f2937" stroke-width="1.5"/>
+    <polygon points="400,190 392,186 392,194" fill="#1f2937"/>
+    <!-- Ticks at 0-10 -->
+    <g stroke="#1f2937" stroke-width="1.5">
+      ${[0,1,2,3,4,5,6,7,8,9,10].map(n => `<line x1="${50 + n*32}" y1="186" x2="${50 + n*32}" y2="194"/>`).join('')}
+    </g>
+    <g font-size="11" text-anchor="middle" fill="#1f2937">
+      ${[0,1,2,3,4,5,6,7,8,9,10].map(n => `<text x="${50 + n*32}" y="208">${n}</text>`).join('')}
+    </g>
+    <text x="210" y="220" text-anchor="middle" font-size="10" font-weight="bold">Score out of 10</text>
+    <!-- Dots: each row 14 above the previous -->
+    <g fill="#7c3aed">
+      <!-- 2: 1 dot -->
+      <circle cx="${50+2*32}" cy="176" r="5"/>
+      <!-- 3: 2 dots -->
+      <circle cx="${50+3*32}" cy="176" r="5"/><circle cx="${50+3*32}" cy="162" r="5"/>
+      <!-- 4: 2 dots -->
+      <circle cx="${50+4*32}" cy="176" r="5"/><circle cx="${50+4*32}" cy="162" r="5"/>
+      <!-- 5: 2 dots -->
+      <circle cx="${50+5*32}" cy="176" r="5"/><circle cx="${50+5*32}" cy="162" r="5"/>
+      <!-- 6: 4 dots -->
+      <circle cx="${50+6*32}" cy="176" r="5"/><circle cx="${50+6*32}" cy="162" r="5"/>
+      <circle cx="${50+6*32}" cy="148" r="5"/><circle cx="${50+6*32}" cy="134" r="5"/>
+      <!-- 7: 5 dots -->
+      <circle cx="${50+7*32}" cy="176" r="5"/><circle cx="${50+7*32}" cy="162" r="5"/>
+      <circle cx="${50+7*32}" cy="148" r="5"/><circle cx="${50+7*32}" cy="134" r="5"/>
+      <circle cx="${50+7*32}" cy="120" r="5"/>
+      <!-- 8: 6 dots -->
+      <circle cx="${50+8*32}" cy="176" r="5"/><circle cx="${50+8*32}" cy="162" r="5"/>
+      <circle cx="${50+8*32}" cy="148" r="5"/><circle cx="${50+8*32}" cy="134" r="5"/>
+      <circle cx="${50+8*32}" cy="120" r="5"/><circle cx="${50+8*32}" cy="106" r="5"/>
+      <!-- 9: 1 dot -->
+      <circle cx="${50+9*32}" cy="176" r="5"/>
+      <!-- 10: 1 dot -->
+      <circle cx="${50+10*32}" cy="176" r="5"/>
+    </g>
+  </svg>`,
+
+  // Q4 Calc — Divided bar graph: rugby 12, soccer 6, basketball 4, AFL 8 (total 30)
+  ca4: `<svg viewBox="0 0 380 100" width="100%" style="max-width:400px" xmlns="http://www.w3.org/2000/svg">
+    <!-- Bar from x=20 to x=360 (width 340). 1 student = 11.33 px -->
+    <!-- Rugby: 12 → 136 px → x=20-156 -->
+    <rect x="20" y="30" width="136" height="50" fill="#7c3aed" stroke="#1f2937" stroke-width="1"/>
+    <text x="88" y="60" text-anchor="middle" font-size="12" fill="white" font-weight="bold">rugby (12)</text>
+    <!-- Soccer: 6 → 68 px → x=156-224 -->
+    <rect x="156" y="30" width="68" height="50" fill="#fbbf24" stroke="#1f2937" stroke-width="1"/>
+    <text x="190" y="60" text-anchor="middle" font-size="11" fill="#1f2937" font-weight="bold">soccer (6)</text>
+    <!-- Basketball: 4 → 45 px → x=224-269 -->
+    <rect x="224" y="30" width="45" height="50" fill="#10b981" stroke="#1f2937" stroke-width="1"/>
+    <text x="246" y="56" text-anchor="middle" font-size="10" fill="white" font-weight="bold">basket-</text>
+    <text x="246" y="68" text-anchor="middle" font-size="10" fill="white" font-weight="bold">ball (4)</text>
+    <!-- AFL: 8 → 91 px → x=269-360 -->
+    <rect x="269" y="30" width="91" height="50" fill="#ef4444" stroke="#1f2937" stroke-width="1"/>
+    <text x="314" y="60" text-anchor="middle" font-size="12" fill="white" font-weight="bold">AFL (8)</text>
+  </svg>`,
+
+  // Q5 Calc — Sector graph for girls' sports
+  // Hockey 100°, Netball 80°, Softball 66°, Basketball 44°, Tennis 40°, Soccer 30°
+  // Cumulative (clockwise from 12 o'clock): 0-100 (Hockey), 100-180 (Netball), 180-246 (Softball),
+  //   246-290 (Basketball), 290-330 (Tennis), 330-360 (Soccer)
+  ca5: `<svg viewBox="0 0 380 290" width="100%" style="max-width:400px" xmlns="http://www.w3.org/2000/svg">
+    <text x="190" y="18" text-anchor="middle" font-size="13" font-weight="bold">Girls' sports</text>
+    <!-- Hockey 100° (0 → 100) -->
+    <path d="M 190 150 L 190 50 A 100 100 0 0 1 288 167 Z" fill="#9ca3af" stroke="white" stroke-width="2"/>
+    <!-- Netball 80° (100 → 180) -->
+    <path d="M 190 150 L 288 167 A 100 100 0 0 1 190 250 Z" fill="#a7f3d0" stroke="white" stroke-width="2"/>
+    <!-- Softball 66° (180 → 246) -->
+    <path d="M 190 150 L 190 250 A 100 100 0 0 1 99 191 Z" fill="#fde68a" stroke="white" stroke-width="2"/>
+    <!-- Basketball 44° (246 → 290) -->
+    <path d="M 190 150 L 99 191 A 100 100 0 0 1 96 124 Z" fill="#c4b5fd" stroke="white" stroke-width="2"/>
+    <!-- Tennis 40° (290 → 330) -->
+    <path d="M 190 150 L 96 124 A 100 100 0 0 1 140 64 Z" fill="#7dd3fc" stroke="white" stroke-width="2"/>
+    <!-- Soccer 30° (330 → 360) -->
+    <path d="M 190 150 L 140 64 A 100 100 0 0 1 190 50 Z" fill="#fda4af" stroke="white" stroke-width="2"/>
+    <!-- Inner angle labels -->
+    <text x="225" y="105" font-size="11" font-weight="bold" fill="#1f2937">100°</text>
+    <text x="225" y="200" font-size="11" font-weight="bold" fill="#1f2937">80°</text>
+    <text x="135" y="220" font-size="11" font-weight="bold" fill="#1f2937">66°</text>
+    <text x="115" y="155" font-size="11" font-weight="bold" fill="#1f2937">44°</text>
+    <text x="125" y="105" font-size="11" font-weight="bold" fill="#1f2937">40°</text>
+    <text x="165" y="80" font-size="10" font-weight="bold" fill="#1f2937">?</text>
+    <!-- Outer category labels -->
+    <text x="298" y="115" font-size="11" font-weight="bold" fill="#374151">Hockey</text>
+    <text x="298" y="195" font-size="11" font-weight="bold" fill="#065f46">Netball</text>
+    <text x="120" y="265" font-size="11" font-weight="bold" fill="#78350f">Softball</text>
+    <text x="20" y="155" font-size="11" font-weight="bold" fill="#5b21b6">Basketball</text>
+    <text x="40" y="95" font-size="11" font-weight="bold" fill="#0c4a6e">Tennis</text>
+    <text x="155" y="40" font-size="11" font-weight="bold" fill="#9f1239">Soccer</text>
+  </svg>`,
+};
+
+// ============================================================
+// Helpers
+// ============================================================
+function el(html) {
+  const div = document.createElement('div');
+  div.innerHTML = html.trim();
+  return div.firstElementChild;
+}
+
+function allQuestionsFlat() {
+  const flat = [];
+  TEST.sections.forEach(sec => sec.topics.forEach(t => t.questions.forEach(q => {
+    flat.push({ section: sec.name, topic: t.name, ...q });
+  })));
+  return flat;
+}
+
+function totalMarks() {
+  return allQuestionsFlat().reduce((s, q) => s + q.marks, 0);
+}
+
+function scoreSoFar() {
+  let earned = 0;
+  allQuestionsFlat().forEach(q => {
+    if (q.parts) {
+      const parts = q.parts.length;
+      const perPart = q.marks / parts;
+      q.parts.forEach(p => {
+        const mk = state.marks[q.id + '.' + p.id];
+        if (mk === 'right') earned += perPart;
+        else if (mk === 'half') earned += perPart / 2;
+      });
+    } else {
+      const mk = state.marks[q.id];
+      if (mk === 'right') earned += q.marks;
+      else if (mk === 'half') earned += q.marks / 2;
+    }
+  });
+  return Math.round(earned * 2) / 2; // round to half marks
+}
+
+// ============================================================
+// Render: Cover
+// ============================================================
+function renderCover() {
+  const total = totalMarks();
+  const html = `
+    <header class="cover">
+      <h1>${TEST.title}</h1>
+      <div class="school">${TEST.school} — ${TEST.topicsCovered}</div>
+
+      <div class="meta-grid">
+        <div class="meta-pill"><span class="num">${total}</span>Total marks</div>
+        <div class="meta-pill"><span class="num">${TEST.sections[0].marks}</span>Section I (Non-calc)</div>
+        <div class="meta-pill"><span class="num">${TEST.sections[1].marks}</span>Section II (Calc)</div>
+        <div class="meta-pill"><span class="num">40 min</span>Suggested time</div>
+      </div>
+
+      <div class="instructions">
+        <h3>How this works</h3>
+        <ul>
+          <li><strong>You'll do the test in two parts.</strong> Section I first (no calculator), then Section II (calculator allowed).</li>
+          <li><strong>No feedback while you're doing it.</strong> Like a real exam — answers come after each section.</li>
+          <li>For questions that need <strong>drawing</strong> (e.g. drawing an angle, shading a shape), do them on paper. You'll just tick them off afterwards.</li>
+          <li>At the end of each section, click <strong>Show answers &amp; mark</strong>. You'll see the correct answer next to yours and mark each one.</li>
+          <li>After marking Section I, you can take a break before starting Section II.</li>
+          <li>At the very end you'll get a final score with a breakdown showing your weak spots.</li>
+        </ul>
+      </div>
+
+      <button class="btn" onclick="startTest()">Start the test</button>
+    </header>
+  `;
+  document.getElementById('root').innerHTML = html;
+}
+
+// ============================================================
+// Render: Test mode (one section at a time)
+// ============================================================
+function renderTest() {
+  const sec = TEST.sections[state.currentSection];
+  const sectionNum = state.currentSection + 1;
+  const totalSections = TEST.sections.length;
+
+  let html = `<div class="section-progress">Section ${sectionNum} of ${totalSections} · ${sec.name.replace(/^Section [IVX]+\s*[—-]\s*/, '')}</div>`;
+  html += `<div class="section-card">
+    <div class="section-header">
+      <h2>${sec.name}</h2>
+      <div>
+        <span class="badge">${sec.marks} marks</span>
+        <span class="badge">${sec.timing}</span>
+      </div>
+    </div>`;
+  sec.topics.forEach(t => {
+    html += `<div class="topic-banner">${t.name}</div>`;
+    t.questions.forEach(q => {
+      html += renderQuestion(q);
+    });
+  });
+  html += `</div>`;
+  html += `
+    <div class="section-card" style="text-align:center;">
+      <h3 style="color:#7c3aed;margin-bottom:8px;">Finished Section ${sectionNum}?</h3>
+      <p style="color:#6b7280;margin-bottom:14px;font-size:14px">
+        When you've done your best on every question, hit the button below to see the answers and mark your work.
+      </p>
+      <button class="btn btn-success" onclick="startMarking()">Show answers &amp; mark Section ${sectionNum}</button>
+    </div>
+  `;
+  document.getElementById('root').innerHTML = html;
+  attachAnswerHandlers();
+}
+
+function renderQuestion(q) {
+  const diagram = q.diagram ? `<div class="diagram">${DIAGRAMS[q.diagram] || ''}</div>` : '';
+  let body = '';
+  if (q.type === 'mc') {
+    body = `<div class="mc-options">${q.options.map(o => `
+      <label class="mc-option" data-q="${q.id}" data-label="${o.label}">
+        <input type="radio" name="${q.id}" value="${o.label}"/>
+        <span class="mc-letter">${o.label}</span>
+        <span>${o.text}</span>
+      </label>`).join('')}</div>`;
+  } else if (q.type === 'text' || q.type === 'numeric') {
+    if (q.inputType === 'longText') {
+      body = `<textarea class="answer-input" data-q="${q.id}" placeholder="${q.placeholder || 'Your answer'}"></textarea>`;
+    } else {
+      body = `<input type="text" class="answer-input small" data-q="${q.id}" placeholder="${q.placeholder || 'Your answer'}"/>`;
+    }
+  } else if (q.type === 'numericPlusReason') {
+    body = `
+      <div style="display:grid;gap:8px;max-width:360px">
+        <input type="text" class="answer-input small" data-q="${q.id}.value" placeholder="Answer"/>
+        <textarea class="answer-input" data-q="${q.id}.reason" placeholder="Your reasoning" style="min-height:50px"></textarea>
+      </div>`;
+  } else if (q.type === 'multipart') {
+    body = `<div class="multipart">${q.parts.map(p => {
+      const pDiagram = p.diagram ? `<div class="diagram">${DIAGRAMS[p.diagram] || ''}</div>` : '';
+      let partInput = '';
+      if (p.inputType === 'numericPlusReason') {
+        partInput = `
+          <input type="text" class="answer-input small" data-q="${q.id}.${p.id}.value" placeholder="Answer" style="margin-bottom:6px"/>
+          <textarea class="answer-input" data-q="${q.id}.${p.id}.reason" placeholder="Reason" style="min-height:50px"></textarea>`;
+      } else {
+        partInput = `<input type="text" class="answer-input small" data-q="${q.id}.${p.id}" placeholder="${p.placeholder || 'Answer'}"/>`;
+      }
+      return `<div class="part">
+        <div class="part-label">${p.label} ${p.prompt}</div>
+        ${pDiagram}
+        ${partInput}
+      </div>`;
+    }).join('')}</div>`;
+  } else if (q.type === 'draw') {
+    body = `<div class="draw-note"><strong>📝 On paper:</strong> ${q.instruction}</div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:#4b5563;cursor:pointer">
+        <input type="checkbox" data-q="${q.id}" style="width:18px;height:18px;accent-color:#7c3aed"/>
+        I've done this on paper
+      </label>`;
+  }
+
+  return `
+    <div class="question">
+      <div class="question-meta">
+        <span class="q-num">${q.num}</span>
+        <span class="q-marks">${q.marks} mark${q.marks > 1 ? 's' : ''}</span>
+      </div>
+      <div class="q-prompt">${q.prompt}</div>
+      ${diagram}
+      ${body}
+    </div>
+  `;
+}
+
+function attachAnswerHandlers() {
+  document.querySelectorAll('input, textarea').forEach(inp => {
+    if (inp.type === 'radio') {
+      inp.addEventListener('change', () => {
+        const lab = inp.closest('label');
+        document.querySelectorAll(`label[data-q="${lab.dataset.q}"]`).forEach(l => l.classList.remove('selected'));
+        lab.classList.add('selected');
+        state.answers[lab.dataset.q] = inp.value;
+      });
+    } else if (inp.type === 'checkbox') {
+      inp.addEventListener('change', () => {
+        state.answers[inp.dataset.q] = inp.checked ? 'done' : '';
+      });
+    } else {
+      inp.addEventListener('input', () => {
+        state.answers[inp.dataset.q] = inp.value;
+      });
+    }
+  });
+  // Restore prior answers if any
+  Object.entries(state.answers).forEach(([k, v]) => {
+    const inps = document.querySelectorAll(`[data-q="${k}"]`);
+    inps.forEach(inp => {
+      if (inp.type === 'radio') {
+        if (inp.value === v) { inp.checked = true; inp.closest('label').classList.add('selected'); }
+      } else if (inp.type === 'checkbox') {
+        inp.checked = v === 'done';
+      } else {
+        inp.value = v;
+      }
+    });
+  });
+}
+
+// ============================================================
+// Render: Marking (one section at a time)
+// ============================================================
+function sectionScore(secIdx) {
+  let earned = 0, total = 0;
+  const sec = TEST.sections[secIdx];
+  sec.topics.forEach(t => t.questions.forEach(q => {
+    total += q.marks;
+    if (q.parts) {
+      const perPart = q.marks / q.parts.length;
+      q.parts.forEach(p => {
+        const mk = state.marks[q.id + '.' + p.id];
+        if (mk === 'right') earned += perPart;
+        else if (mk === 'half') earned += perPart / 2;
+      });
+    } else {
+      const mk = state.marks[q.id];
+      if (mk === 'right') earned += q.marks;
+      else if (mk === 'half') earned += q.marks / 2;
+    }
+  }));
+  return { earned: Math.round(earned * 2) / 2, total };
+}
+
+function renderMarking() {
+  const sec = TEST.sections[state.currentSection];
+  const sectionNum = state.currentSection + 1;
+  const totalSections = TEST.sections.length;
+  const isLastSection = state.currentSection === totalSections - 1;
+
+  let html = `
+    <div class="section-progress">Section ${sectionNum} of ${totalSections} · Marking</div>
+    <div class="marking-card">
+      <h2 style="color:#7c3aed;margin-bottom:6px">Mark your work — ${sec.name}</h2>
+      <div class="marking-instructions">
+        <strong>How to mark:</strong> For each question, compare YOUR answer to the CORRECT answer.
+        Click <strong>✓ Right</strong>, <strong>± Half</strong> (if you got some but not all of the marks),
+        or <strong>✗ Wrong</strong>. Be honest — that's how you learn what to work on.
+      </div>
+  `;
+
+  // Only mark questions in current section
+  sec.topics.forEach(t => {
+    t.questions.forEach(q => {
+      html += renderMarkBlock({ ...q, section: sec.name, topic: t.name });
+    });
+  });
+
+  // Section-level running score
+  const { earned, total } = sectionScore(state.currentSection);
+  const pct = total > 0 ? Math.round((earned / total) * 100) : 0;
+  html += `
+    <div class="section-summary">
+      <div>
+        <div class="label">Section ${sectionNum} score:</div>
+        <div class="big-score-inline">${earned} <span class="total">/ ${total}</span></div>
+      </div>
+      <div class="pct-pill">${pct}%</div>
+    </div>
+  `;
+
+  // Bottom actions
+  if (isLastSection) {
+    html += `
+      <div style="margin-top:20px;text-align:center;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-small" onclick="goToTest()">← Back to questions</button>
+        <button class="btn" onclick="goToResults()">See final results →</button>
+      </div>
+    </div>
+    `;
+  } else {
+    html += `
+      <div style="margin-top:20px;text-align:center;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-small" onclick="goToTest()">← Back to questions</button>
+        <button class="btn" onclick="nextSection()">Continue to Section ${sectionNum + 1} →</button>
+      </div>
+      <p style="margin-top:10px;text-align:center;font-size:13px;color:#6b7280;">
+        Tip: feel free to take a break before starting the next section.
+      </p>
+    </div>
+    `;
+  }
+
+  document.getElementById('root').innerHTML = html;
+}
+
+function suggestAuto(q, partOrNull) {
+  // Simple auto-suggest: returns 'right' if answer trivially matches, else null
+  const ans = (partOrNull
+    ? state.answers[q.id + '.' + partOrNull.id]
+    : state.answers[q.id]) || '';
+  if (!ans) return null;
+  const target = partOrNull ? partOrNull : q;
+  if (q.type === 'mc' && !partOrNull) {
+    return (ans === q.correct) ? 'right' : null;
+  }
+  const norm = s => String(s || '').toLowerCase().replace(/[\s°$,]/g, '').replace(/−/g, '-').trim();
+  const userNorm = norm(ans);
+  const correctNorm = norm(target.correct);
+  if (userNorm === correctNorm) return 'right';
+  const alts = (target.alts || target.altsValue || []).map(norm);
+  if (alts.includes(userNorm)) return 'right';
+  return null;
+}
+
+function renderMarkBlock(q) {
+  const isMulti = q.parts && q.parts.length > 0;
+  const isNumReason = q.type === 'numericPlusReason';
+  let inner = '';
+
+  if (isMulti) {
+    inner = q.parts.map(p => {
+      const yourAns = state.answers[q.id + '.' + p.id] || '';
+      const yourValue = state.answers[q.id + '.' + p.id + '.value'] || '';
+      const yourReason = state.answers[q.id + '.' + p.id + '.reason'] || '';
+      const autoMark = suggestAuto(q, p);
+      const currentMark = state.marks[q.id + '.' + p.id] || autoMark;
+      if (autoMark && !state.marks[q.id + '.' + p.id]) {
+        state.marks[q.id + '.' + p.id] = autoMark;
+      }
+      if (p.inputType === 'numericPlusReason') {
+        return `<div class="part">
+          <div class="part-label">${p.label} ${p.prompt}</div>
+          ${p.diagram ? `<div class="diagram">${DIAGRAMS[p.diagram] || ''}</div>` : ''}
+          <div class="answer-row">
+            <div class="answer-label">Your answer:</div>
+            <div class="answer-value her-ans">${yourValue || '<em>(blank)</em>'}<br><span style="color:#6b7280">Reason: ${yourReason || '<em>(blank)</em>'}</span></div>
+            <div class="answer-label">Correct:</div>
+            <div class="answer-value correct-ans">${p.correct}<br><span>Reason: ${p.correctReason || '—'}</span></div>
+          </div>
+          ${p.working ? `<div class="working"><strong>Working:</strong> ${p.working}</div>` : ''}
+          ${renderMarkButtons(q.id + '.' + p.id, currentMark)}
+        </div>`;
+      }
+      return `<div class="part">
+        <div class="part-label">${p.label} ${p.prompt}</div>
+        <div class="answer-row">
+          <div class="answer-label">Your answer:</div>
+          <div class="answer-value her-ans">${yourAns || '<em>(blank)</em>'}</div>
+          <div class="answer-label">Correct:</div>
+          <div class="answer-value correct-ans">${p.correct}</div>
+        </div>
+        ${p.working ? `<div class="working"><strong>Working:</strong> ${p.working}</div>` : ''}
+        ${renderMarkButtons(q.id + '.' + p.id, currentMark)}
+      </div>`;
+    }).join('');
+  } else if (isNumReason) {
+    const yourValue = state.answers[q.id + '.value'] || '';
+    const yourReason = state.answers[q.id + '.reason'] || '';
+    const autoMark = suggestAuto(q);
+    const currentMark = state.marks[q.id] || autoMark;
+    if (autoMark && !state.marks[q.id]) state.marks[q.id] = autoMark;
+    inner = `
+      <div class="answer-row">
+        <div class="answer-label">Your answer:</div>
+        <div class="answer-value her-ans">${yourValue || '<em>(blank)</em>'}<br><span style="color:#6b7280">Reason: ${yourReason || '<em>(blank)</em>'}</span></div>
+        <div class="answer-label">Correct:</div>
+        <div class="answer-value correct-ans">${q.correct}<br><span>Reason: ${q.correctReason}</span></div>
+      </div>
+      ${q.working ? `<div class="working"><strong>Working:</strong> ${q.working}</div>` : ''}
+      ${renderMarkButtons(q.id, currentMark)}
+    `;
+  } else if (q.type === 'draw') {
+    const didIt = state.answers[q.id] === 'done';
+    const currentMark = state.marks[q.id];
+    inner = `
+      <div class="answer-row">
+        <div class="answer-label">On paper:</div>
+        <div class="answer-value her-ans">${didIt ? '✓ You marked this as done' : '<em>(not marked done)</em>'}</div>
+        <div class="answer-label">Looking for:</div>
+        <div class="answer-value correct-ans">${q.correctDesc}</div>
+      </div>
+      ${q.working ? `<div class="working"><strong>Tip:</strong> ${q.working}</div>` : ''}
+      <div class="draw-note">Check your paper. Mark yourself based on what you actually drew.</div>
+      ${renderMarkButtons(q.id, currentMark)}
+    `;
+  } else {
+    // Single text/numeric or MC
+    let yourAns = state.answers[q.id] || '';
+    const autoMark = suggestAuto(q);
+    const currentMark = state.marks[q.id] || autoMark;
+    if (autoMark && !state.marks[q.id]) state.marks[q.id] = autoMark;
+    let correctDisplay = q.correct;
+    if (q.type === 'mc') {
+      const opt = q.options.find(o => o.label === q.correct);
+      correctDisplay = `${q.correct} — ${opt ? opt.text : ''}`;
+      if (yourAns) {
+        const userOpt = q.options.find(o => o.label === yourAns);
+        yourAns = `${yourAns} — ${userOpt ? userOpt.text : ''}`;
+      }
+    }
+    inner = `
+      <div class="answer-row">
+        <div class="answer-label">Your answer:</div>
+        <div class="answer-value her-ans">${yourAns || '<em>(blank)</em>'}</div>
+        <div class="answer-label">Correct:</div>
+        <div class="answer-value correct-ans">${correctDisplay}</div>
+      </div>
+      ${q.working ? `<div class="working"><strong>Working:</strong> ${q.working}</div>` : ''}
+      ${renderMarkButtons(q.id, currentMark)}
+    `;
+  }
+
+  return `<div class="mark-q" id="mark-${q.id}">
+    <div class="mark-q-header">
+      <span class="q-num">${q.num}</span>
+      <span style="color:#6b7280;font-size:13px">${q.section} · ${q.topic}</span>
+      <span class="q-marks">${q.marks} mark${q.marks > 1 ? 's' : ''}</span>
+    </div>
+    <div class="q-prompt" style="font-size:14px">${q.prompt}</div>
+    ${q.diagram ? `<div class="diagram">${DIAGRAMS[q.diagram] || ''}</div>` : ''}
+    <div class="mark-q-body">${inner}</div>
+  </div>`;
+}
+
+function renderMarkButtons(key, currentMark) {
+  return `<div class="mark-buttons">
+    <button class="mark-btn right ${currentMark === 'right' ? 'active' : ''}" onclick="setMark('${key}','right')">✓ Right</button>
+    <button class="mark-btn half ${currentMark === 'half' ? 'active' : ''}" onclick="setMark('${key}','half')">± Half</button>
+    <button class="mark-btn wrong ${currentMark === 'wrong' ? 'active' : ''}" onclick="setMark('${key}','wrong')">✗ Wrong</button>
+    <span class="mark-status ${currentMark ? 'scored' : ''}">${currentMark ? 'Marked' : 'Pick one'}</span>
+  </div>`;
+}
+
+function setMark(key, value) {
+  state.marks[key] = value;
+  renderMarking();
+}
+
+// ============================================================
+// Render: Results
+// ============================================================
+function renderResults() {
+  const total = totalMarks();
+  const earned = scoreSoFar();
+  const pct = Math.round((earned / total) * 100);
+
+  // Breakdown by section + topic
+  const breakdown = [];
+  TEST.sections.forEach(sec => {
+    sec.topics.forEach(t => {
+      let topicEarned = 0, topicTotal = 0;
+      t.questions.forEach(q => {
+        topicTotal += q.marks;
+        if (q.parts) {
+          const perPart = q.marks / q.parts.length;
+          q.parts.forEach(p => {
+            const mk = state.marks[q.id + '.' + p.id];
+            if (mk === 'right') topicEarned += perPart;
+            else if (mk === 'half') topicEarned += perPart / 2;
+          });
+        } else {
+          const mk = state.marks[q.id];
+          if (mk === 'right') topicEarned += q.marks;
+          else if (mk === 'half') topicEarned += q.marks / 2;
+        }
+      });
+      breakdown.push({ section: sec.name, topic: t.name, earned: topicEarned, total: topicTotal });
+    });
+  });
+
+  // Weak spots — anything <50%
+  const weak = breakdown.filter(b => b.total > 0 && (b.earned / b.total) < 0.5);
+
+  // Wrong/half questions for "to revise" list
+  const toRevise = [];
+  allQuestionsFlat().forEach(q => {
+    if (q.parts) {
+      q.parts.forEach(p => {
+        const mk = state.marks[q.id + '.' + p.id];
+        if (mk === 'wrong' || mk === 'half') {
+          toRevise.push(`Q${q.num}${p.id} (${q.topic})`);
+        }
+      });
+    } else {
+      const mk = state.marks[q.id];
+      if (mk === 'wrong' || mk === 'half') {
+        toRevise.push(`Q${q.num} (${q.topic})`);
+      }
+    }
+  });
+
+  let emoji = '🌟';
+  let msg = 'Outstanding!';
+  if (pct < 50) { emoji = '💪'; msg = "Great practice — now you know where to focus."; }
+  else if (pct < 70) { emoji = '👍'; msg = "Solid effort. A few areas to tighten up."; }
+  else if (pct < 85) { emoji = '🎯'; msg = "Strong work — clear on most of it."; }
+
+  let html = `
+    <div class="results-card">
+      <div style="font-size:48px;margin-bottom:8px">${emoji}</div>
+      <h2 style="color:#7c3aed">${msg}</h2>
+      <div class="big-score">${earned} <span class="total">/ ${total}</span></div>
+      <div class="percent">${pct}%</div>
+
+      <div class="breakdown">
+        ${breakdown.map(b => {
+          const p = b.total > 0 ? Math.round((b.earned/b.total)*100) : 0;
+          return `<div class="breakdown-cell">
+            <h4>${b.topic}</h4>
+            <div class="score">${b.earned} / ${b.total}</div>
+            <div class="meta">${b.section.split('—')[0].trim()} · ${p}%</div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      ${weak.length ? `
+        <div class="weak-spots">
+          <h4>📚 Topics to revise</h4>
+          <ul>${weak.map(w => `<li><strong>${w.topic}</strong> — ${w.earned} / ${w.total} marks</li>`).join('')}</ul>
+        </div>
+      ` : ''}
+
+      ${toRevise.length ? `
+        <div class="weak-spots" style="background:#dbeafe;border-color:#3b82f6;color:#1e3a8a">
+          <h4 style="color:#1e40af">📝 Questions to review</h4>
+          <p style="font-size:13px">Go back over these specific questions:</p>
+          <ul>${toRevise.map(q => `<li>${q}</li>`).join('')}</ul>
+        </div>
+      ` : `<div class="weak-spots" style="background:#ecfdf5;border-color:#10b981;color:#065f46">
+        <h4 style="color:#064e3b">🎉 Nothing to revise!</h4>
+        <p style="font-size:13px">You marked every question correct. Time for another practice test!</p>
+      </div>`}
+
+      <div style="margin-top:20px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-small" onclick="goToMarking()">← Re-mark</button>
+        <button class="btn btn-small" onclick="restartTest()">Take it again</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('root').innerHTML = html;
+}
+
+// ============================================================
+// Navigation
+// ============================================================
+function startTest() { state.currentSection = 0; state.mode = 'test'; renderTest(); window.scrollTo(0, 0); }
+function startMarking() { state.mode = 'marking'; renderMarking(); window.scrollTo(0, 0); }
+function goToTest() { state.mode = 'test'; renderTest(); window.scrollTo(0, 0); }
+function goToMarking() { state.mode = 'marking'; renderMarking(); window.scrollTo(0, 0); }
+function goToResults() { state.mode = 'results'; renderResults(); window.scrollTo(0, 0); }
+function nextSection() {
+  if (state.currentSection < TEST.sections.length - 1) {
+    state.currentSection += 1;
+    state.mode = 'test';
+    renderTest();
+    window.scrollTo(0, 0);
+  } else {
+    goToResults();
+  }
+}
+function restartTest() {
+  if (!confirm('This will clear all your answers and start fresh. Continue?')) return;
+  state.answers = {};
+  state.marks = {};
+  state.currentSection = 0;
+  state.mode = 'cover';
+  renderCover();
+  window.scrollTo(0, 0);
+}
+
+// Expose for inline handlers
+window.startTest = startTest;
+window.startMarking = startMarking;
+window.goToTest = goToTest;
+window.goToMarking = goToMarking;
+window.goToResults = goToResults;
+window.nextSection = nextSection;
+window.restartTest = restartTest;
+window.setMark = setMark;
+
+// Init
+renderCover();
+</script>
+</body>
+</html>

@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2022 Year 7 Maths — Practice Test</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: linear-gradient(135deg, #fce7f3 0%, #e0e7ff 100%);
+    min-height: 100vh;
+    padding: 16px;
+    color: #1f2937;
+    line-height: 1.55;
+  }
+  .container { max-width: 920px; margin: 0 auto; }
+
+  header.cover {
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  header.cover h1 { color: #7c3aed; font-size: 26px; margin-bottom: 6px; }
+  header.cover .school { font-size: 16px; color: #6b7280; margin-bottom: 16px; }
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin: 20px 0;
+  }
+  .meta-pill {
+    background: #f5f3ff; padding: 10px 14px; border-radius: 10px;
+    color: #5b21b6; font-size: 14px;
+  }
+  .meta-pill .num { font-size: 18px; font-weight: 700; display: block; }
+
+  .instructions {
+    background: #fef3c7; border-left: 4px solid #f59e0b;
+    padding: 14px 18px; border-radius: 8px;
+    text-align: left; margin: 20px 0;
+    font-size: 14px; color: #78350f;
+  }
+  .instructions h3 { color: #92400e; margin-bottom: 8px; font-size: 15px; }
+  .instructions ul { padding-left: 20px; }
+  .instructions li { margin: 4px 0; }
+
+  .btn {
+    background: #7c3aed; color: white; border: none;
+    padding: 14px 28px; border-radius: 10px; font-size: 16px;
+    font-weight: 600; cursor: pointer; transition: background 0.15s, transform 0.15s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn:hover { background: #6d28d9; transform: translateY(-1px); }
+  .btn:disabled { background: #c4b5fd; cursor: not-allowed; transform: none; }
+  .btn-secondary { background: #e5e7eb; color: #1f2937; }
+  .btn-secondary:hover { background: #d1d5db; }
+  .btn-success { background: #10b981; }
+  .btn-success:hover { background: #059669; }
+  .btn-danger { background: #ef4444; }
+  .btn-danger:hover { background: #dc2626; }
+  .btn-small { padding: 8px 14px; font-size: 14px; }
+
+  .section-card {
+    background: white;
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    margin-top: 20px;
+  }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 3px solid #ede9fe; padding-bottom: 12px; margin-bottom: 16px;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .section-header h2 { color: #7c3aed; font-size: 20px; }
+  .section-header .badge {
+    background: #ede9fe; color: #5b21b6;
+    padding: 6px 14px; border-radius: 14px;
+    font-size: 13px; font-weight: 600;
+  }
+  .topic-banner {
+    background: #f3f4f6; padding: 10px 16px; border-radius: 8px;
+    margin: 18px 0 10px 0; font-weight: 600; color: #4b5563;
+  }
+
+  .question {
+    border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 18px; margin: 12px 0;
+    background: #fafaf9;
+  }
+  .question-meta {
+    display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .q-num {
+    background: #7c3aed; color: white;
+    min-width: 32px; height: 32px;
+    border-radius: 8px; display: inline-flex;
+    align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; padding: 0 8px;
+  }
+  .q-marks {
+    background: #f3f4f6; color: #6b7280;
+    padding: 4px 10px; border-radius: 10px;
+    font-size: 12px; font-weight: 600; margin-left: auto;
+  }
+  .q-prompt {
+    font-size: 15px; color: #1f2937;
+    margin-bottom: 10px;
+  }
+  .q-prompt strong { color: #5b21b6; }
+
+  .answer-input {
+    width: 100%; padding: 10px 12px;
+    border: 2px solid #ddd6fe; border-radius: 8px;
+    font-size: 15px; background: white;
+    font-family: inherit;
+  }
+  .answer-input:focus { outline: none; border-color: #7c3aed; }
+  .answer-input.small { max-width: 200px; }
+  .answer-input.tiny { max-width: 100px; display: inline-block; }
+  textarea.answer-input { resize: vertical; min-height: 60px; font-family: inherit; }
+
+  .mc-options {
+    display: grid; gap: 8px; margin-top: 6px;
+  }
+  .mc-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; border: 2px solid #e5e7eb;
+    border-radius: 8px; background: white; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mc-option:hover { border-color: #c4b5fd; background: #faf5ff; }
+  .mc-option input[type="radio"] { accent-color: #7c3aed; }
+  .mc-option.selected {
+    border-color: #7c3aed; background: #f5f3ff;
+  }
+  .mc-letter {
+    background: #ede9fe; color: #5b21b6;
+    width: 28px; height: 28px; border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+  }
+  .mc-option.selected .mc-letter { background: #7c3aed; color: white; }
+
+  .multipart .part {
+    margin: 12px 0; padding-left: 22px;
+    border-left: 3px solid #ede9fe;
+  }
+  .part-label {
+    font-weight: 600; color: #6b7280;
+    margin-bottom: 6px; font-size: 14px;
+  }
+
+  .diagram {
+    background: white; border: 1px solid #e5e7eb;
+    border-radius: 10px; padding: 16px; margin: 12px 0;
+    display: flex; justify-content: center;
+  }
+  .diagram svg { max-width: 100%; height: auto; }
+
+  .draw-note {
+    background: #fef3c7; padding: 10px 14px;
+    border-radius: 8px; font-size: 13px;
+    color: #78350f; margin: 8px 0;
+  }
+  .draw-note strong { color: #92400e; }
+
+  .nav-actions {
+    display: flex; justify-content: space-between; gap: 10px;
+    margin-top: 20px; flex-wrap: wrap;
+  }
+
+  /* Marking mode */
+  .marking-card { background: white; border-radius: 16px; padding: 26px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .marking-instructions {
+    background: #ecfdf5; border-left: 4px solid #10b981;
+    padding: 14px 18px; border-radius: 8px;
+    color: #065f46; font-size: 14px; margin-bottom: 16px;
+  }
+  .marking-instructions strong { color: #064e3b; }
+
+  .mark-q {
+    border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 16px; margin: 12px 0; background: #fafaf9;
+  }
+  .mark-q-header {
+    display: flex; gap: 10px; align-items: center; margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .mark-q-body { font-size: 14px; }
+  .answer-row {
+    display: grid; grid-template-columns: auto 1fr; gap: 8px 14px;
+    margin: 10px 0; align-items: start;
+  }
+  .answer-label {
+    font-weight: 600; color: #6b7280; font-size: 13px;
+    padding-top: 6px;
+  }
+  .answer-value {
+    background: white; padding: 8px 12px;
+    border: 1px solid #e5e7eb; border-radius: 6px;
+    min-height: 36px; font-size: 14px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .answer-value.correct-ans {
+    background: #ecfdf5; border-color: #10b981;
+    color: #065f46;
+  }
+  .answer-value.her-ans { background: #f5f3ff; border-color: #c4b5fd; }
+  .answer-value em { color: #9ca3af; font-style: italic; }
+  .working {
+    font-size: 13px; color: #6b7280; margin-top: 6px;
+    padding: 8px 12px; background: #fffbeb; border-radius: 6px;
+    border-left: 3px solid #f59e0b;
+  }
+  .working strong { color: #78350f; }
+
+  .mark-buttons {
+    display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+    align-items: center;
+  }
+  .mark-btn {
+    border: 2px solid #e5e7eb; background: white;
+    padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    font-weight: 600; font-size: 13px;
+    transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .mark-btn:hover { border-color: #c4b5fd; }
+  .mark-btn.right.active {
+    background: #10b981; border-color: #10b981; color: white;
+  }
+  .mark-btn.half.active {
+    background: #f59e0b; border-color: #f59e0b; color: white;
+  }
+  .mark-btn.wrong.active {
+    background: #ef4444; border-color: #ef4444; color: white;
+  }
+  .mark-status {
+    margin-left: auto; font-size: 13px; color: #6b7280; font-weight: 600;
+  }
+  .mark-status.scored { color: #065f46; }
+
+  /* Results page */
+  .results-card {
+    background: white; border-radius: 18px; padding: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .big-score {
+    font-size: 56px; font-weight: 800; color: #7c3aed;
+    margin: 16px 0;
+  }
+  .big-score .total { font-size: 32px; color: #9ca3af; }
+  .percent {
+    font-size: 20px; font-weight: 700;
+    background: #ede9fe; color: #5b21b6;
+    padding: 6px 16px; border-radius: 20px;
+    display: inline-block;
+  }
+  .breakdown {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px; margin: 24px 0;
+  }
+  .breakdown-cell {
+    background: #f9fafb; padding: 14px; border-radius: 10px;
+    text-align: left;
+  }
+  .breakdown-cell h4 { color: #5b21b6; font-size: 13px; margin-bottom: 6px; }
+  .breakdown-cell .score { font-size: 18px; font-weight: 700; color: #1f2937; }
+  .breakdown-cell .meta { font-size: 12px; color: #6b7280; }
+
+  .weak-spots {
+    background: #fef3c7; border-left: 4px solid #f59e0b;
+    padding: 14px 18px; border-radius: 8px;
+    text-align: left; margin-top: 16px;
+    font-size: 14px; color: #78350f;
+  }
+  .weak-spots h4 { color: #92400e; margin-bottom: 8px; }
+  .weak-spots ul { padding-left: 20px; }
+
+  .section-progress {
+    background: #ede9fe; color: #5b21b6;
+    padding: 8px 18px; border-radius: 20px;
+    font-weight: 600; font-size: 14px;
+    text-align: center;
+    margin: 0 auto 14px auto;
+    display: block;
+    width: fit-content;
+    max-width: 90%;
+  }
+  .section-summary {
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+    border: 2px solid #c4b5fd;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .section-summary .label {
+    font-size: 14px; color: #5b21b6; font-weight: 600;
+  }
+  .section-summary .big-score-inline {
+    font-size: 28px; font-weight: 800; color: #7c3aed;
+  }
+  .section-summary .big-score-inline .total {
+    color: #a78bfa; font-size: 20px;
+  }
+  .section-summary .pct-pill {
+    background: white; color: #5b21b6;
+    padding: 4px 12px; border-radius: 12px;
+    font-size: 13px; font-weight: 700;
+  }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .section-card, header.cover, .marking-card, .results-card { padding: 18px; }
+    header.cover h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container" id="root"></div>
+
+<script>
+// ============================================================
+// Test data — 2022 Year 7 Task 2 (38 marks)
+// ============================================================
+const TEST = {
+  year: 2022,
+  title: '2022 Year 7 Maths — Practice Test',
+  school: 'Year 7 · Task 2 · Term 2',
+  topicsCovered: 'Whole Numbers, Integers & Data',
+  sections: [
+    {
+      id: 's1', name: 'Section I — Non-Calculator', marks: 15, timing: '15 minutes',
+      topics: [
+        {
+          name: 'Whole Numbers',
+          questions: [
+            {
+              id: 'nc1', num: 1, marks: 2, type: 'text',
+              prompt: 'Liam paid $45 for potatoes at $2.50 per kilogram. How many kilograms did he buy?',
+              placeholder: 'kilograms',
+              correct: '18 kg',
+              alts: ['18','18kg','18 kg','18kgs','18 kilograms'],
+              working: '$45 ÷ $2.50 = 18 kg. (Shortcut: $5 buys 2 kg, so $45 buys 9 × 2 = 18 kg.)',
+            },
+            {
+              id: 'nc2', num: 2, marks: 1, type: 'numeric',
+              prompt: 'Fill in the box with a value to make this number sentence true: <strong>25 + 47 = 56 + ?</strong>',
+              placeholder: 'a number',
+              correct: '16',
+              working: '25 + 47 = 72. So 56 + ? = 72 → ? = 72 − 56 = 16.',
+            },
+            {
+              id: 'nc3', num: 3, marks: 1, type: 'mc',
+              prompt: 'Which of these has the same value as <strong>9 × 7</strong>?',
+              options: [
+                { label: 'A', text: '12 + 9 × 3' },
+                { label: 'B', text: '4 × 6 × 3' },
+                { label: 'C', text: '8 × 8 − 3' },
+                { label: 'D', text: '12 × 5 + 3' },
+              ],
+              correct: 'D',
+              working: '9 × 7 = 63. A=12+27=39, B=72, C=61, D=63. ✓',
+            },
+            {
+              id: 'nc4', num: 4, marks: 1, type: 'numeric',
+              prompt: 'A positive number is multiplied by itself and then 7 is added. The answer is 16. What is the number?',
+              placeholder: 'a number',
+              correct: '3',
+              working: 'x² + 7 = 16 → x² = 9 → x = 3.',
+            },
+            {
+              id: 'nc5', num: 5, marks: 1, type: 'numeric',
+              prompt: 'What is the value of <strong>(18 × 12) ÷ (24 ÷ 3)</strong>?',
+              placeholder: 'a number',
+              correct: '27',
+              working: '(18 × 12) = 216. (24 ÷ 3) = 8. 216 ÷ 8 = 27.',
+            },
+          ],
+        },
+        {
+          name: 'Integers',
+          questions: [
+            {
+              id: 'nc6', num: 6, marks: 5, type: 'multipart',
+              prompt: 'Solve:',
+              parts: [
+                { id: 'a', label: 'a.', prompt: '−2 + 12 =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '10', working: '−2 + 12 = 10.' },
+                { id: 'b', label: 'b.', prompt: '−7 − 7 =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '−14', alts: ['-14'], working: '−7 − 7 = −14.' },
+                { id: 'c', label: 'c.', prompt: '−6 × 3 =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '−18', alts: ['-18'], working: 'Negative × positive = negative. 6 × 3 = 18, so −18.' },
+                { id: 'd', label: 'd.', prompt: '−144 ÷ −12 =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '12', working: 'Negative ÷ negative = positive. 144 ÷ 12 = 12.' },
+                { id: 'e', label: 'e.', prompt: '[−4 − (−3)] × (−7) =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '7', working: '[−4 − (−3)] = [−4 + 3] = −1. −1 × −7 = 7.' },
+              ],
+            },
+            {
+              id: 'nc7', num: 7, marks: 1, type: 'mc',
+              prompt: 'What two numbers add together to give <strong>−5</strong> and multiply together to give <strong>6</strong>?',
+              options: [
+                { label: 'A', text: '−5 and −1' },
+                { label: 'B', text: '−6 and −1' },
+                { label: 'C', text: '−3 and −2' },
+                { label: 'D', text: '3 and −2' },
+              ],
+              correct: 'C',
+              working: '−3 + −2 = −5 ✓ and −3 × −2 = 6 ✓',
+            },
+            {
+              id: 'nc8', num: 8, marks: 1, type: 'numeric',
+              prompt: 'Fill in the missing number: <strong>50 ÷ (−5) × ? = 30</strong>',
+              placeholder: 'a number',
+              correct: '−3',
+              alts: ['-3'],
+              working: '50 ÷ −5 = −10. So −10 × ? = 30 → ? = 30 ÷ −10 = −3.',
+            },
+            {
+              id: 'nc9', num: 9, marks: 1, type: 'text',
+              prompt: 'The temperatures one day in January: Sydney 27°C, London −2°C, Rome −4°C, Brisbane 31°C. How much colder is it in London compared to Sydney?',
+              placeholder: 'e.g. 12°C',
+              correct: '29°C',
+              alts: ['29','29°','29°C','29 degrees','29c'],
+              working: '27 − (−2) = 27 + 2 = 29°C colder in London.',
+            },
+            {
+              id: 'nc10', num: 10, marks: 1, type: 'text',
+              prompt: 'What are the next two numbers in this pattern? <strong>12, −13, −38, −63, ___, ___</strong>',
+              placeholder: 'two numbers separated by a comma',
+              correct: '−88, −113',
+              alts: ['-88, -113','-88,-113','−88,−113','-88 and -113'],
+              working: 'Each step subtracts 25. So −63 − 25 = −88, and −88 − 25 = −113.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 's2', name: 'Section II — Calculator Allowed', marks: 23, timing: '25 minutes',
+      topics: [
+        {
+          name: 'Data — Types & Sources',
+          questions: [
+            {
+              id: 'ca1', num: 1, marks: 3, type: 'multipart',
+              prompt: 'State whether each is <strong>Categorical</strong>, <strong>Numerical Discrete</strong> or <strong>Numerical Continuous</strong>.',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'The amount of rainfall for Five Dock in April this year.',
+                  inputType: 'text', placeholder: 'one of the three types',
+                  correct: 'Numerical Continuous',
+                  alts: ['numerical continuous','continuous','num continuous','numerical-continuous'],
+                  working: 'Rainfall is measured (any value within a range) → Numerical Continuous.' },
+                { id: 'b', label: 'b)', prompt: 'The number of desks in a classroom.',
+                  inputType: 'text', placeholder: 'one of the three types',
+                  correct: 'Numerical Discrete',
+                  alts: ['numerical discrete','discrete','num discrete'],
+                  working: 'You count desks (whole numbers only) → Numerical Discrete.' },
+                { id: 'c', label: 'c)', prompt: 'Favourite TV shows for Year 7 students.',
+                  inputType: 'text', placeholder: 'one of the three types',
+                  correct: 'Categorical',
+                  alts: ['categorical','category'],
+                  working: 'TV shows are names/labels → Categorical.' },
+              ],
+            },
+            {
+              id: 'ca2', num: 2, marks: 2, type: 'text', inputType: 'longText',
+              prompt: 'A survey is given to all students AND staff of a school to review the canteen menu. Is this an example of a <strong>census</strong> or a <strong>survey</strong>? Explain.',
+              placeholder: 'Your answer + explanation',
+              correct: 'Census — every person in the population is included.',
+              alts: ['census'],
+              working: 'A census covers EVERY person in the population. Because the whole school (students + staff) is asked, it\'s a census, not a sample survey.',
+            },
+          ],
+        },
+        {
+          name: 'Data — Graphs',
+          questions: [
+            {
+              id: 'ca3', num: 3, marks: 2, type: 'multipart',
+              prompt: 'The Von Trap family budget is shown in this sector graph.',
+              diagram: 'ca3',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'What is most money spent on?',
+                  inputType: 'text', placeholder: 'one of the categories',
+                  correct: 'Food', alts: ['food'],
+                  working: 'Food has the largest slice (200°).' },
+                { id: 'b', label: 'b)', prompt: 'If the family has a total budget of $1200, how much is spent on Entertainment and Bills combined?',
+                  inputType: 'text', placeholder: '$ amount',
+                  correct: '$300', alts: ['300','$300','300.00','$300.00'],
+                  working: 'Entertainment (60°) + Bills (30°) = 90°. 90° is 1/4 of 360°. 1/4 × $1200 = $300.' },
+              ],
+            },
+            {
+              id: 'ca4', num: 4, marks: 2, type: 'multipart',
+              prompt: 'A quiz score frequency table.',
+              diagram: 'ca4',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'Complete the frequency column (commas, in order from score 6 to 10).',
+                  inputType: 'text', placeholder: 'e.g. 1, 2, 3, 4, 5',
+                  correct: '2, 4, 5, 8, 7',
+                  alts: ['2,4,5,8,7','2 4 5 8 7'],
+                  working: 'Count the tallies: 6→II (2), 7→IIII (4), 8→IIII (5), 9→IIII III (8), 10→IIII II (7).' },
+                { id: 'b', label: 'b)', prompt: 'How many students were there altogether?',
+                  inputType: 'numeric', placeholder: 'total',
+                  correct: '26',
+                  working: '2 + 4 + 5 + 8 + 7 = 26.' },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'Data — Mean, Median, Mode, Range',
+          questions: [
+            {
+              id: 'ca5', num: 5, marks: 4, type: 'multipart',
+              prompt: 'Data: <strong>5, 3, 6, 7, 3, 5, 4, 6, 5, 5, 4, 7</strong>',
+              parts: [
+                { id: 'plot', label: '', prompt: 'Construct a dot plot for this data on paper.',
+                  inputType: 'text', placeholder: 'Tick when done',
+                  correct: 'Dot plot: 2 dots at 3, 2 at 4, 4 at 5, 2 at 6, 2 at 7.',
+                  alts: ['done','✓','yes','drawn','tick'],
+                  working: 'Sorted: 3, 3, 4, 4, 5, 5, 5, 5, 6, 6, 7, 7. Number of dots above each score = how many times it appears.' },
+                { id: 'a', label: 'a)', prompt: 'What is the mode for this data?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '5',
+                  working: '5 appears 4 times — more than any other number.' },
+                { id: 'b', label: 'b)', prompt: 'Calculate the mean.',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '5',
+                  working: 'Sum = 3+3+4+4+5+5+5+5+6+6+7+7 = 60. Count = 12. Mean = 60 ÷ 12 = 5.' },
+              ],
+            },
+            {
+              id: 'ca6', num: 6, marks: 4, type: 'multipart',
+              prompt: 'For the scores <strong>3, 7, 2, 5, 8, 2</strong> find:',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'The mean',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '4.5', alts: ['4.5','4½'],
+                  working: 'Sum = 3+7+2+5+8+2 = 27. Count = 6. Mean = 27 ÷ 6 = 4.5.' },
+                { id: 'b', label: 'b)', prompt: 'The mode',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '2',
+                  working: '2 appears twice — more than any other number.' },
+                { id: 'c', label: 'c)', prompt: 'The median (worth 2 marks — show working)',
+                  inputType: 'longText', placeholder: 'Your answer + working',
+                  correct: '4',
+                  alts: ['4','median 4','median = 4','median is 4'],
+                  working: 'Sort: 2, 2, 3, 5, 7, 8. Middle two are 3 and 5. Median = (3 + 5) ÷ 2 = 4.' },
+              ],
+            },
+            {
+              id: 'ca7', num: 7, marks: 2, type: 'multipart',
+              prompt: 'Stem & Leaf plot — minutes people were kept on hold.',
+              diagram: 'ca7',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'What is the range for this data?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '58',
+                  working: 'Largest = 59 (from 5|9). Smallest = 1 (from 0|1). Range = 59 − 1 = 58.' },
+                { id: 'b', label: 'b)', prompt: 'What is the median?',
+                  inputType: 'numeric', placeholder: 'a number',
+                  correct: '25',
+                  working: '17 values total. Middle (9th) value = 25.' },
+              ],
+            },
+            {
+              id: 'ca8', num: 8, marks: 4, type: 'multipart',
+              prompt: 'Salaries of workers in a company: <strong>$89,500 · $92,000 · $92,000 · $96,500 · $98,420 · $194,000</strong>',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'Calculate the mean salary.',
+                  inputType: 'text', placeholder: '$ amount',
+                  correct: '$110,403.33', alts: ['110403.33','$110403.33','110,403.33','$110,403','110403','$110403','$110403.33'],
+                  working: 'Sum = $662,420. Mean = $662,420 ÷ 6 = $110,403.33.' },
+                { id: 'b', label: 'b)', prompt: 'Calculate the median salary.',
+                  inputType: 'text', placeholder: '$ amount',
+                  correct: '$94,250', alts: ['94250','$94250','94,250','$94,250'],
+                  working: 'Middle two are $92,000 and $96,500. Median = ($92,000 + $96,500) ÷ 2 = $94,250.' },
+                { id: 'c', label: 'c)', prompt: 'Which is more representative — mean or median? Give reasons. (2 marks)',
+                  inputType: 'longText', placeholder: 'Your answer + reasons',
+                  correct: 'Median',
+                  alts: ['median','the median'],
+                  working: 'Median. The $194,000 salary is an outlier that pulls the mean up, away from what most workers actually earn. The median ($94,250) is closer to the typical salary.' },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+// ============================================================
+// State
+// ============================================================
+const state = {
+  answers: {},  // qId or qId.partId → string answer
+  marks: {},    // qId or qId.partId → 'right' | 'half' | 'wrong'
+  mode: 'cover', // cover | test | marking | results
+  currentSection: 0,
+};
+
+// ============================================================
+// Diagram SVGs
+// ============================================================
+const DIAGRAMS = {
+  // Q3 Calc — Von Trap family sector graph (Clothes 70°, Bills 30°, Entertainment 60°, Food 200°)
+  ca3: `<svg viewBox="0 0 360 290" width="100%" style="max-width:380px" xmlns="http://www.w3.org/2000/svg">
+    <text x="180" y="18" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f2937">Von Trap Family Budget</text>
+    <!-- Food 200° (-90 to 110 deg, big slice) -->
+    <path d="M 180 150 L 180 50 A 100 100 0 1 1 145 244 Z" fill="#fce7f3" stroke="white" stroke-width="2"/>
+    <!-- Clothes 70° (110 to 180) -->
+    <path d="M 180 150 L 145 244 A 100 100 0 0 1 80 150 Z" fill="#fcd34d" stroke="white" stroke-width="2"/>
+    <!-- Bills 30° (180 to 210) -->
+    <path d="M 180 150 L 80 150 A 100 100 0 0 1 93 100 Z" fill="#60a5fa" stroke="white" stroke-width="2"/>
+    <!-- Entertainment 60° (210 to 270 = top) -->
+    <path d="M 180 150 L 93 100 A 100 100 0 0 1 180 50 Z" fill="#374151" stroke="white" stroke-width="2"/>
+    <!-- Labels -->
+    <text x="220" y="155" font-size="13" font-weight="bold" fill="#831843">Food 200°</text>
+    <text x="120" y="220" font-size="11" font-weight="bold" fill="#78350f">Clothes 70°</text>
+    <text x="35" y="135" font-size="11" font-weight="bold" fill="#1e40af">Bills 30°</text>
+    <text x="100" y="80" font-size="11" font-weight="bold" fill="white">Ent. 60°</text>
+  </svg>`,
+
+  // Q4 Calc — Quiz frequency table
+  ca4: `<table style="border-collapse:collapse;font-family:inherit;font-size:14px;margin:0 auto;border:1px solid #1f2937">
+    <thead><tr style="background:#f3f4f6">
+      <th style="border:1px solid #1f2937;padding:6px 14px">Score</th>
+      <th style="border:1px solid #1f2937;padding:6px 14px">Tally</th>
+      <th style="border:1px solid #1f2937;padding:6px 14px">Frequency</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center">6</td><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;letter-spacing:2px">II</td><td style="border:1px solid #1f2937;padding:6px 14px;color:#9ca3af">?</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center">7</td><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;letter-spacing:2px">IIII</td><td style="border:1px solid #1f2937;padding:6px 14px;color:#9ca3af">?</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center">8</td><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;letter-spacing:2px">H̶H̶</td><td style="border:1px solid #1f2937;padding:6px 14px;color:#9ca3af">?</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center">9</td><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;letter-spacing:2px">H̶H̶ III</td><td style="border:1px solid #1f2937;padding:6px 14px;color:#9ca3af">?</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center">10</td><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;letter-spacing:2px">H̶H̶ II</td><td style="border:1px solid #1f2937;padding:6px 14px;color:#9ca3af">?</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px;color:#6b7280;text-align:center;margin-top:6px;font-style:italic">Tip: <strong>H̶H̶</strong> represents 5 (the classic "four lines + a slash" tally for five)</p>`,
+
+  // Q7 Calc — Stem & Leaf plot of minutes on hold
+  ca7: `<table style="border-collapse:collapse;font-family:'Courier New',monospace;font-size:14px;margin:0 auto;border:1px solid #1f2937;background:white">
+    <thead><tr style="background:#f3f4f6">
+      <th colspan="2" style="border:1px solid #1f2937;padding:6px 14px;font-family:inherit">Minutes</th>
+    </tr><tr style="background:#f9fafb;font-size:11px;color:#6b7280;font-family:inherit">
+      <td style="border:1px solid #1f2937;padding:4px 10px">Stem</td>
+      <td style="border:1px solid #1f2937;padding:4px 10px">Leaf</td>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;font-weight:bold">0</td><td style="border:1px solid #1f2937;padding:6px 14px;letter-spacing:6px">1 2 2 4</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;font-weight:bold">1</td><td style="border:1px solid #1f2937;padding:6px 14px;letter-spacing:6px">1 5 5</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;font-weight:bold">2</td><td style="border:1px solid #1f2937;padding:6px 14px;letter-spacing:6px">0 5 6</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;font-weight:bold">3</td><td style="border:1px solid #1f2937;padding:6px 14px;letter-spacing:6px">2 5 8</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;font-weight:bold">4</td><td style="border:1px solid #1f2937;padding:6px 14px;letter-spacing:6px">1 6</td></tr>
+      <tr><td style="border:1px solid #1f2937;padding:6px 14px;text-align:center;font-weight:bold">5</td><td style="border:1px solid #1f2937;padding:6px 14px;letter-spacing:6px">0 9</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px;color:#6b7280;text-align:center;margin-top:6px;font-style:italic">e.g. "2 | 5" means the value 25.</p>`,
+};
+
+// ============================================================
+// Helpers
+// ============================================================
+function el(html) {
+  const div = document.createElement('div');
+  div.innerHTML = html.trim();
+  return div.firstElementChild;
+}
+
+function allQuestionsFlat() {
+  const flat = [];
+  TEST.sections.forEach(sec => sec.topics.forEach(t => t.questions.forEach(q => {
+    flat.push({ section: sec.name, topic: t.name, ...q });
+  })));
+  return flat;
+}
+
+function totalMarks() {
+  return allQuestionsFlat().reduce((s, q) => s + q.marks, 0);
+}
+
+function scoreSoFar() {
+  let earned = 0;
+  allQuestionsFlat().forEach(q => {
+    if (q.parts) {
+      const parts = q.parts.length;
+      const perPart = q.marks / parts;
+      q.parts.forEach(p => {
+        const mk = state.marks[q.id + '.' + p.id];
+        if (mk === 'right') earned += perPart;
+        else if (mk === 'half') earned += perPart / 2;
+      });
+    } else {
+      const mk = state.marks[q.id];
+      if (mk === 'right') earned += q.marks;
+      else if (mk === 'half') earned += q.marks / 2;
+    }
+  });
+  return Math.round(earned * 2) / 2; // round to half marks
+}
+
+// ============================================================
+// Render: Cover
+// ============================================================
+function renderCover() {
+  const total = totalMarks();
+  const html = `
+    <header class="cover">
+      <h1>${TEST.title}</h1>
+      <div class="school">${TEST.school} — ${TEST.topicsCovered}</div>
+
+      <div class="meta-grid">
+        <div class="meta-pill"><span class="num">${total}</span>Total marks</div>
+        <div class="meta-pill"><span class="num">${TEST.sections[0].marks}</span>Section I (Non-calc)</div>
+        <div class="meta-pill"><span class="num">${TEST.sections[1].marks}</span>Section II (Calc)</div>
+        <div class="meta-pill"><span class="num">40 min</span>Suggested time</div>
+      </div>
+
+      <div class="instructions">
+        <h3>How this works</h3>
+        <ul>
+          <li><strong>You'll do the test in two parts.</strong> Section I first (no calculator), then Section II (calculator allowed).</li>
+          <li><strong>No feedback while you're doing it.</strong> Like a real exam — answers come after each section.</li>
+          <li>For questions that need <strong>drawing</strong> (e.g. drawing an angle, shading a shape), do them on paper. You'll just tick them off afterwards.</li>
+          <li>At the end of each section, click <strong>Show answers &amp; mark</strong>. You'll see the correct answer next to yours and mark each one.</li>
+          <li>After marking Section I, you can take a break before starting Section II.</li>
+          <li>At the very end you'll get a final score with a breakdown showing your weak spots.</li>
+        </ul>
+      </div>
+
+      <button class="btn" onclick="startTest()">Start the test</button>
+    </header>
+  `;
+  document.getElementById('root').innerHTML = html;
+}
+
+// ============================================================
+// Render: Test mode (one section at a time)
+// ============================================================
+function renderTest() {
+  const sec = TEST.sections[state.currentSection];
+  const sectionNum = state.currentSection + 1;
+  const totalSections = TEST.sections.length;
+
+  let html = `<div class="section-progress">Section ${sectionNum} of ${totalSections} · ${sec.name.replace(/^Section [IVX]+\s*[—-]\s*/, '')}</div>`;
+  html += `<div class="section-card">
+    <div class="section-header">
+      <h2>${sec.name}</h2>
+      <div>
+        <span class="badge">${sec.marks} marks</span>
+        <span class="badge">${sec.timing}</span>
+      </div>
+    </div>`;
+  sec.topics.forEach(t => {
+    html += `<div class="topic-banner">${t.name}</div>`;
+    t.questions.forEach(q => {
+      html += renderQuestion(q);
+    });
+  });
+  html += `</div>`;
+  html += `
+    <div class="section-card" style="text-align:center;">
+      <h3 style="color:#7c3aed;margin-bottom:8px;">Finished Section ${sectionNum}?</h3>
+      <p style="color:#6b7280;margin-bottom:14px;font-size:14px">
+        When you've done your best on every question, hit the button below to see the answers and mark your work.
+      </p>
+      <button class="btn btn-success" onclick="startMarking()">Show answers &amp; mark Section ${sectionNum}</button>
+    </div>
+  `;
+  document.getElementById('root').innerHTML = html;
+  attachAnswerHandlers();
+}
+
+function renderQuestion(q) {
+  const diagram = q.diagram ? `<div class="diagram">${DIAGRAMS[q.diagram] || ''}</div>` : '';
+  let body = '';
+  if (q.type === 'mc') {
+    body = `<div class="mc-options">${q.options.map(o => `
+      <label class="mc-option" data-q="${q.id}" data-label="${o.label}">
+        <input type="radio" name="${q.id}" value="${o.label}"/>
+        <span class="mc-letter">${o.label}</span>
+        <span>${o.text}</span>
+      </label>`).join('')}</div>`;
+  } else if (q.type === 'text' || q.type === 'numeric') {
+    if (q.inputType === 'longText') {
+      body = `<textarea class="answer-input" data-q="${q.id}" placeholder="${q.placeholder || 'Your answer'}"></textarea>`;
+    } else {
+      body = `<input type="text" class="answer-input small" data-q="${q.id}" placeholder="${q.placeholder || 'Your answer'}"/>`;
+    }
+  } else if (q.type === 'numericPlusReason') {
+    body = `
+      <div style="display:grid;gap:8px;max-width:360px">
+        <input type="text" class="answer-input small" data-q="${q.id}.value" placeholder="Answer"/>
+        <textarea class="answer-input" data-q="${q.id}.reason" placeholder="Your reasoning" style="min-height:50px"></textarea>
+      </div>`;
+  } else if (q.type === 'multipart') {
+    body = `<div class="multipart">${q.parts.map(p => {
+      const pDiagram = p.diagram ? `<div class="diagram">${DIAGRAMS[p.diagram] || ''}</div>` : '';
+      let partInput = '';
+      if (p.inputType === 'numericPlusReason') {
+        partInput = `
+          <input type="text" class="answer-input small" data-q="${q.id}.${p.id}.value" placeholder="Answer" style="margin-bottom:6px"/>
+          <textarea class="answer-input" data-q="${q.id}.${p.id}.reason" placeholder="Reason" style="min-height:50px"></textarea>`;
+      } else {
+        partInput = `<input type="text" class="answer-input small" data-q="${q.id}.${p.id}" placeholder="${p.placeholder || 'Answer'}"/>`;
+      }
+      return `<div class="part">
+        <div class="part-label">${p.label} ${p.prompt}</div>
+        ${pDiagram}
+        ${partInput}
+      </div>`;
+    }).join('')}</div>`;
+  } else if (q.type === 'draw') {
+    body = `<div class="draw-note"><strong>📝 On paper:</strong> ${q.instruction}</div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:#4b5563;cursor:pointer">
+        <input type="checkbox" data-q="${q.id}" style="width:18px;height:18px;accent-color:#7c3aed"/>
+        I've done this on paper
+      </label>`;
+  }
+
+  return `
+    <div class="question">
+      <div class="question-meta">
+        <span class="q-num">${q.num}</span>
+        <span class="q-marks">${q.marks} mark${q.marks > 1 ? 's' : ''}</span>
+      </div>
+      <div class="q-prompt">${q.prompt}</div>
+      ${diagram}
+      ${body}
+    </div>
+  `;
+}
+
+function attachAnswerHandlers() {
+  document.querySelectorAll('input, textarea').forEach(inp => {
+    if (inp.type === 'radio') {
+      inp.addEventListener('change', () => {
+        const lab = inp.closest('label');
+        document.querySelectorAll(`label[data-q="${lab.dataset.q}"]`).forEach(l => l.classList.remove('selected'));
+        lab.classList.add('selected');
+        state.answers[lab.dataset.q] = inp.value;
+      });
+    } else if (inp.type === 'checkbox') {
+      inp.addEventListener('change', () => {
+        state.answers[inp.dataset.q] = inp.checked ? 'done' : '';
+      });
+    } else {
+      inp.addEventListener('input', () => {
+        state.answers[inp.dataset.q] = inp.value;
+      });
+    }
+  });
+  // Restore prior answers if any
+  Object.entries(state.answers).forEach(([k, v]) => {
+    const inps = document.querySelectorAll(`[data-q="${k}"]`);
+    inps.forEach(inp => {
+      if (inp.type === 'radio') {
+        if (inp.value === v) { inp.checked = true; inp.closest('label').classList.add('selected'); }
+      } else if (inp.type === 'checkbox') {
+        inp.checked = v === 'done';
+      } else {
+        inp.value = v;
+      }
+    });
+  });
+}
+
+// ============================================================
+// Render: Marking (one section at a time)
+// ============================================================
+function sectionScore(secIdx) {
+  let earned = 0, total = 0;
+  const sec = TEST.sections[secIdx];
+  sec.topics.forEach(t => t.questions.forEach(q => {
+    total += q.marks;
+    if (q.parts) {
+      const perPart = q.marks / q.parts.length;
+      q.parts.forEach(p => {
+        const mk = state.marks[q.id + '.' + p.id];
+        if (mk === 'right') earned += perPart;
+        else if (mk === 'half') earned += perPart / 2;
+      });
+    } else {
+      const mk = state.marks[q.id];
+      if (mk === 'right') earned += q.marks;
+      else if (mk === 'half') earned += q.marks / 2;
+    }
+  }));
+  return { earned: Math.round(earned * 2) / 2, total };
+}
+
+function renderMarking() {
+  const sec = TEST.sections[state.currentSection];
+  const sectionNum = state.currentSection + 1;
+  const totalSections = TEST.sections.length;
+  const isLastSection = state.currentSection === totalSections - 1;
+
+  let html = `
+    <div class="section-progress">Section ${sectionNum} of ${totalSections} · Marking</div>
+    <div class="marking-card">
+      <h2 style="color:#7c3aed;margin-bottom:6px">Mark your work — ${sec.name}</h2>
+      <div class="marking-instructions">
+        <strong>How to mark:</strong> For each question, compare YOUR answer to the CORRECT answer.
+        Click <strong>✓ Right</strong>, <strong>± Half</strong> (if you got some but not all of the marks),
+        or <strong>✗ Wrong</strong>. Be honest — that's how you learn what to work on.
+      </div>
+  `;
+
+  // Only mark questions in current section
+  sec.topics.forEach(t => {
+    t.questions.forEach(q => {
+      html += renderMarkBlock({ ...q, section: sec.name, topic: t.name });
+    });
+  });
+
+  // Section-level running score
+  const { earned, total } = sectionScore(state.currentSection);
+  const pct = total > 0 ? Math.round((earned / total) * 100) : 0;
+  html += `
+    <div class="section-summary">
+      <div>
+        <div class="label">Section ${sectionNum} score:</div>
+        <div class="big-score-inline">${earned} <span class="total">/ ${total}</span></div>
+      </div>
+      <div class="pct-pill">${pct}%</div>
+    </div>
+  `;
+
+  // Bottom actions
+  if (isLastSection) {
+    html += `
+      <div style="margin-top:20px;text-align:center;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-small" onclick="goToTest()">← Back to questions</button>
+        <button class="btn" onclick="goToResults()">See final results →</button>
+      </div>
+    </div>
+    `;
+  } else {
+    html += `
+      <div style="margin-top:20px;text-align:center;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-small" onclick="goToTest()">← Back to questions</button>
+        <button class="btn" onclick="nextSection()">Continue to Section ${sectionNum + 1} →</button>
+      </div>
+      <p style="margin-top:10px;text-align:center;font-size:13px;color:#6b7280;">
+        Tip: feel free to take a break before starting the next section.
+      </p>
+    </div>
+    `;
+  }
+
+  document.getElementById('root').innerHTML = html;
+}
+
+function suggestAuto(q, partOrNull) {
+  // Simple auto-suggest: returns 'right' if answer trivially matches, else null
+  const ans = (partOrNull
+    ? state.answers[q.id + '.' + partOrNull.id]
+    : state.answers[q.id]) || '';
+  if (!ans) return null;
+  const target = partOrNull ? partOrNull : q;
+  if (q.type === 'mc' && !partOrNull) {
+    return (ans === q.correct) ? 'right' : null;
+  }
+  const norm = s => String(s || '').toLowerCase().replace(/[\s°$,]/g, '').replace(/−/g, '-').trim();
+  const userNorm = norm(ans);
+  const correctNorm = norm(target.correct);
+  if (userNorm === correctNorm) return 'right';
+  const alts = (target.alts || target.altsValue || []).map(norm);
+  if (alts.includes(userNorm)) return 'right';
+  return null;
+}
+
+function renderMarkBlock(q) {
+  const isMulti = q.parts && q.parts.length > 0;
+  const isNumReason = q.type === 'numericPlusReason';
+  let inner = '';
+
+  if (isMulti) {
+    inner = q.parts.map(p => {
+      const yourAns = state.answers[q.id + '.' + p.id] || '';
+      const yourValue = state.answers[q.id + '.' + p.id + '.value'] || '';
+      const yourReason = state.answers[q.id + '.' + p.id + '.reason'] || '';
+      const autoMark = suggestAuto(q, p);
+      const currentMark = state.marks[q.id + '.' + p.id] || autoMark;
+      if (autoMark && !state.marks[q.id + '.' + p.id]) {
+        state.marks[q.id + '.' + p.id] = autoMark;
+      }
+      if (p.inputType === 'numericPlusReason') {
+        return `<div class="part">
+          <div class="part-label">${p.label} ${p.prompt}</div>
+          ${p.diagram ? `<div class="diagram">${DIAGRAMS[p.diagram] || ''}</div>` : ''}
+          <div class="answer-row">
+            <div class="answer-label">Your answer:</div>
+            <div class="answer-value her-ans">${yourValue || '<em>(blank)</em>'}<br><span style="color:#6b7280">Reason: ${yourReason || '<em>(blank)</em>'}</span></div>
+            <div class="answer-label">Correct:</div>
+            <div class="answer-value correct-ans">${p.correct}<br><span>Reason: ${p.correctReason || '—'}</span></div>
+          </div>
+          ${p.working ? `<div class="working"><strong>Working:</strong> ${p.working}</div>` : ''}
+          ${renderMarkButtons(q.id + '.' + p.id, currentMark)}
+        </div>`;
+      }
+      return `<div class="part">
+        <div class="part-label">${p.label} ${p.prompt}</div>
+        <div class="answer-row">
+          <div class="answer-label">Your answer:</div>
+          <div class="answer-value her-ans">${yourAns || '<em>(blank)</em>'}</div>
+          <div class="answer-label">Correct:</div>
+          <div class="answer-value correct-ans">${p.correct}</div>
+        </div>
+        ${p.working ? `<div class="working"><strong>Working:</strong> ${p.working}</div>` : ''}
+        ${renderMarkButtons(q.id + '.' + p.id, currentMark)}
+      </div>`;
+    }).join('');
+  } else if (isNumReason) {
+    const yourValue = state.answers[q.id + '.value'] || '';
+    const yourReason = state.answers[q.id + '.reason'] || '';
+    const autoMark = suggestAuto(q);
+    const currentMark = state.marks[q.id] || autoMark;
+    if (autoMark && !state.marks[q.id]) state.marks[q.id] = autoMark;
+    inner = `
+      <div class="answer-row">
+        <div class="answer-label">Your answer:</div>
+        <div class="answer-value her-ans">${yourValue || '<em>(blank)</em>'}<br><span style="color:#6b7280">Reason: ${yourReason || '<em>(blank)</em>'}</span></div>
+        <div class="answer-label">Correct:</div>
+        <div class="answer-value correct-ans">${q.correct}<br><span>Reason: ${q.correctReason}</span></div>
+      </div>
+      ${q.working ? `<div class="working"><strong>Working:</strong> ${q.working}</div>` : ''}
+      ${renderMarkButtons(q.id, currentMark)}
+    `;
+  } else if (q.type === 'draw') {
+    const didIt = state.answers[q.id] === 'done';
+    const currentMark = state.marks[q.id];
+    inner = `
+      <div class="answer-row">
+        <div class="answer-label">On paper:</div>
+        <div class="answer-value her-ans">${didIt ? '✓ You marked this as done' : '<em>(not marked done)</em>'}</div>
+        <div class="answer-label">Looking for:</div>
+        <div class="answer-value correct-ans">${q.correctDesc}</div>
+      </div>
+      ${q.working ? `<div class="working"><strong>Tip:</strong> ${q.working}</div>` : ''}
+      <div class="draw-note">Check your paper. Mark yourself based on what you actually drew.</div>
+      ${renderMarkButtons(q.id, currentMark)}
+    `;
+  } else {
+    // Single text/numeric or MC
+    let yourAns = state.answers[q.id] || '';
+    const autoMark = suggestAuto(q);
+    const currentMark = state.marks[q.id] || autoMark;
+    if (autoMark && !state.marks[q.id]) state.marks[q.id] = autoMark;
+    let correctDisplay = q.correct;
+    if (q.type === 'mc') {
+      const opt = q.options.find(o => o.label === q.correct);
+      correctDisplay = `${q.correct} — ${opt ? opt.text : ''}`;
+      if (yourAns) {
+        const userOpt = q.options.find(o => o.label === yourAns);
+        yourAns = `${yourAns} — ${userOpt ? userOpt.text : ''}`;
+      }
+    }
+    inner = `
+      <div class="answer-row">
+        <div class="answer-label">Your answer:</div>
+        <div class="answer-value her-ans">${yourAns || '<em>(blank)</em>'}</div>
+        <div class="answer-label">Correct:</div>
+        <div class="answer-value correct-ans">${correctDisplay}</div>
+      </div>
+      ${q.working ? `<div class="working"><strong>Working:</strong> ${q.working}</div>` : ''}
+      ${renderMarkButtons(q.id, currentMark)}
+    `;
+  }
+
+  return `<div class="mark-q" id="mark-${q.id}">
+    <div class="mark-q-header">
+      <span class="q-num">${q.num}</span>
+      <span style="color:#6b7280;font-size:13px">${q.section} · ${q.topic}</span>
+      <span class="q-marks">${q.marks} mark${q.marks > 1 ? 's' : ''}</span>
+    </div>
+    <div class="q-prompt" style="font-size:14px">${q.prompt}</div>
+    ${q.diagram ? `<div class="diagram">${DIAGRAMS[q.diagram] || ''}</div>` : ''}
+    <div class="mark-q-body">${inner}</div>
+  </div>`;
+}
+
+function renderMarkButtons(key, currentMark) {
+  return `<div class="mark-buttons">
+    <button class="mark-btn right ${currentMark === 'right' ? 'active' : ''}" onclick="setMark('${key}','right')">✓ Right</button>
+    <button class="mark-btn half ${currentMark === 'half' ? 'active' : ''}" onclick="setMark('${key}','half')">± Half</button>
+    <button class="mark-btn wrong ${currentMark === 'wrong' ? 'active' : ''}" onclick="setMark('${key}','wrong')">✗ Wrong</button>
+    <span class="mark-status ${currentMark ? 'scored' : ''}">${currentMark ? 'Marked' : 'Pick one'}</span>
+  </div>`;
+}
+
+function setMark(key, value) {
+  state.marks[key] = value;
+  renderMarking();
+}
+
+// ============================================================
+// Render: Results
+// ============================================================
+function renderResults() {
+  const total = totalMarks();
+  const earned = scoreSoFar();
+  const pct = Math.round((earned / total) * 100);
+
+  // Breakdown by section + topic
+  const breakdown = [];
+  TEST.sections.forEach(sec => {
+    sec.topics.forEach(t => {
+      let topicEarned = 0, topicTotal = 0;
+      t.questions.forEach(q => {
+        topicTotal += q.marks;
+        if (q.parts) {
+          const perPart = q.marks / q.parts.length;
+          q.parts.forEach(p => {
+            const mk = state.marks[q.id + '.' + p.id];
+            if (mk === 'right') topicEarned += perPart;
+            else if (mk === 'half') topicEarned += perPart / 2;
+          });
+        } else {
+          const mk = state.marks[q.id];
+          if (mk === 'right') topicEarned += q.marks;
+          else if (mk === 'half') topicEarned += q.marks / 2;
+        }
+      });
+      breakdown.push({ section: sec.name, topic: t.name, earned: topicEarned, total: topicTotal });
+    });
+  });
+
+  // Weak spots — anything <50%
+  const weak = breakdown.filter(b => b.total > 0 && (b.earned / b.total) < 0.5);
+
+  // Wrong/half questions for "to revise" list
+  const toRevise = [];
+  allQuestionsFlat().forEach(q => {
+    if (q.parts) {
+      q.parts.forEach(p => {
+        const mk = state.marks[q.id + '.' + p.id];
+        if (mk === 'wrong' || mk === 'half') {
+          toRevise.push(`Q${q.num}${p.id} (${q.topic})`);
+        }
+      });
+    } else {
+      const mk = state.marks[q.id];
+      if (mk === 'wrong' || mk === 'half') {
+        toRevise.push(`Q${q.num} (${q.topic})`);
+      }
+    }
+  });
+
+  let emoji = '🌟';
+  let msg = 'Outstanding!';
+  if (pct < 50) { emoji = '💪'; msg = "Great practice — now you know where to focus."; }
+  else if (pct < 70) { emoji = '👍'; msg = "Solid effort. A few areas to tighten up."; }
+  else if (pct < 85) { emoji = '🎯'; msg = "Strong work — clear on most of it."; }
+
+  let html = `
+    <div class="results-card">
+      <div style="font-size:48px;margin-bottom:8px">${emoji}</div>
+      <h2 style="color:#7c3aed">${msg}</h2>
+      <div class="big-score">${earned} <span class="total">/ ${total}</span></div>
+      <div class="percent">${pct}%</div>
+
+      <div class="breakdown">
+        ${breakdown.map(b => {
+          const p = b.total > 0 ? Math.round((b.earned/b.total)*100) : 0;
+          return `<div class="breakdown-cell">
+            <h4>${b.topic}</h4>
+            <div class="score">${b.earned} / ${b.total}</div>
+            <div class="meta">${b.section.split('—')[0].trim()} · ${p}%</div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      ${weak.length ? `
+        <div class="weak-spots">
+          <h4>📚 Topics to revise</h4>
+          <ul>${weak.map(w => `<li><strong>${w.topic}</strong> — ${w.earned} / ${w.total} marks</li>`).join('')}</ul>
+        </div>
+      ` : ''}
+
+      ${toRevise.length ? `
+        <div class="weak-spots" style="background:#dbeafe;border-color:#3b82f6;color:#1e3a8a">
+          <h4 style="color:#1e40af">📝 Questions to review</h4>
+          <p style="font-size:13px">Go back over these specific questions:</p>
+          <ul>${toRevise.map(q => `<li>${q}</li>`).join('')}</ul>
+        </div>
+      ` : `<div class="weak-spots" style="background:#ecfdf5;border-color:#10b981;color:#065f46">
+        <h4 style="color:#064e3b">🎉 Nothing to revise!</h4>
+        <p style="font-size:13px">You marked every question correct. Time for another practice test!</p>
+      </div>`}
+
+      <div style="margin-top:20px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-small" onclick="goToMarking()">← Re-mark</button>
+        <button class="btn btn-small" onclick="restartTest()">Take it again</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('root').innerHTML = html;
+}
+
+// ============================================================
+// Navigation
+// ============================================================
+function startTest() { state.currentSection = 0; state.mode = 'test'; renderTest(); window.scrollTo(0, 0); }
+function startMarking() { state.mode = 'marking'; renderMarking(); window.scrollTo(0, 0); }
+function goToTest() { state.mode = 'test'; renderTest(); window.scrollTo(0, 0); }
+function goToMarking() { state.mode = 'marking'; renderMarking(); window.scrollTo(0, 0); }
+function goToResults() { state.mode = 'results'; renderResults(); window.scrollTo(0, 0); }
+function nextSection() {
+  if (state.currentSection < TEST.sections.length - 1) {
+    state.currentSection += 1;
+    state.mode = 'test';
+    renderTest();
+    window.scrollTo(0, 0);
+  } else {
+    goToResults();
+  }
+}
+function restartTest() {
+  if (!confirm('This will clear all your answers and start fresh. Continue?')) return;
+  state.answers = {};
+  state.marks = {};
+  state.currentSection = 0;
+  state.mode = 'cover';
+  renderCover();
+  window.scrollTo(0, 0);
+}
+
+// Expose for inline handlers
+window.startTest = startTest;
+window.startMarking = startMarking;
+window.goToTest = goToTest;
+window.goToMarking = goToMarking;
+window.goToResults = goToResults;
+window.nextSection = nextSection;
+window.restartTest = restartTest;
+window.setMark = setMark;
+
+// Init
+renderCover();
+</script>
+</body>
+</html>
