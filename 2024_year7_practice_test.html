@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2024 Year 7 Maths — Practice Test</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: linear-gradient(135deg, #fce7f3 0%, #e0e7ff 100%);
+    min-height: 100vh;
+    padding: 16px;
+    color: #1f2937;
+    line-height: 1.55;
+  }
+  .container { max-width: 920px; margin: 0 auto; }
+
+  header.cover {
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  header.cover h1 { color: #7c3aed; font-size: 26px; margin-bottom: 6px; }
+  header.cover .school { font-size: 16px; color: #6b7280; margin-bottom: 16px; }
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin: 20px 0;
+  }
+  .meta-pill {
+    background: #f5f3ff; padding: 10px 14px; border-radius: 10px;
+    color: #5b21b6; font-size: 14px;
+  }
+  .meta-pill .num { font-size: 18px; font-weight: 700; display: block; }
+
+  .instructions {
+    background: #fef3c7; border-left: 4px solid #f59e0b;
+    padding: 14px 18px; border-radius: 8px;
+    text-align: left; margin: 20px 0;
+    font-size: 14px; color: #78350f;
+  }
+  .instructions h3 { color: #92400e; margin-bottom: 8px; font-size: 15px; }
+  .instructions ul { padding-left: 20px; }
+  .instructions li { margin: 4px 0; }
+
+  .btn {
+    background: #7c3aed; color: white; border: none;
+    padding: 14px 28px; border-radius: 10px; font-size: 16px;
+    font-weight: 600; cursor: pointer; transition: background 0.15s, transform 0.15s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn:hover { background: #6d28d9; transform: translateY(-1px); }
+  .btn:disabled { background: #c4b5fd; cursor: not-allowed; transform: none; }
+  .btn-secondary { background: #e5e7eb; color: #1f2937; }
+  .btn-secondary:hover { background: #d1d5db; }
+  .btn-success { background: #10b981; }
+  .btn-success:hover { background: #059669; }
+  .btn-danger { background: #ef4444; }
+  .btn-danger:hover { background: #dc2626; }
+  .btn-small { padding: 8px 14px; font-size: 14px; }
+
+  .section-card {
+    background: white;
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    margin-top: 20px;
+  }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 3px solid #ede9fe; padding-bottom: 12px; margin-bottom: 16px;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .section-header h2 { color: #7c3aed; font-size: 20px; }
+  .section-header .badge {
+    background: #ede9fe; color: #5b21b6;
+    padding: 6px 14px; border-radius: 14px;
+    font-size: 13px; font-weight: 600;
+  }
+  .topic-banner {
+    background: #f3f4f6; padding: 10px 16px; border-radius: 8px;
+    margin: 18px 0 10px 0; font-weight: 600; color: #4b5563;
+  }
+
+  .question {
+    border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 18px; margin: 12px 0;
+    background: #fafaf9;
+  }
+  .question-meta {
+    display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .q-num {
+    background: #7c3aed; color: white;
+    min-width: 32px; height: 32px;
+    border-radius: 8px; display: inline-flex;
+    align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; padding: 0 8px;
+  }
+  .q-marks {
+    background: #f3f4f6; color: #6b7280;
+    padding: 4px 10px; border-radius: 10px;
+    font-size: 12px; font-weight: 600; margin-left: auto;
+  }
+  .q-prompt {
+    font-size: 15px; color: #1f2937;
+    margin-bottom: 10px;
+  }
+  .q-prompt strong { color: #5b21b6; }
+
+  .answer-input {
+    width: 100%; padding: 10px 12px;
+    border: 2px solid #ddd6fe; border-radius: 8px;
+    font-size: 15px; background: white;
+    font-family: inherit;
+  }
+  .answer-input:focus { outline: none; border-color: #7c3aed; }
+  .answer-input.small { max-width: 200px; }
+  .answer-input.tiny { max-width: 100px; display: inline-block; }
+  textarea.answer-input { resize: vertical; min-height: 60px; font-family: inherit; }
+
+  .mc-options {
+    display: grid; gap: 8px; margin-top: 6px;
+  }
+  .mc-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; border: 2px solid #e5e7eb;
+    border-radius: 8px; background: white; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mc-option:hover { border-color: #c4b5fd; background: #faf5ff; }
+  .mc-option input[type="radio"] { accent-color: #7c3aed; }
+  .mc-option.selected {
+    border-color: #7c3aed; background: #f5f3ff;
+  }
+  .mc-letter {
+    background: #ede9fe; color: #5b21b6;
+    width: 28px; height: 28px; border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+  }
+  .mc-option.selected .mc-letter { background: #7c3aed; color: white; }
+
+  .multipart .part {
+    margin: 12px 0; padding-left: 22px;
+    border-left: 3px solid #ede9fe;
+  }
+  .part-label {
+    font-weight: 600; color: #6b7280;
+    margin-bottom: 6px; font-size: 14px;
+  }
+
+  .diagram {
+    background: white; border: 1px solid #e5e7eb;
+    border-radius: 10px; padding: 16px; margin: 12px 0;
+    display: flex; justify-content: center;
+  }
+  .diagram svg { max-width: 100%; height: auto; }
+
+  .draw-note {
+    background: #fef3c7; padding: 10px 14px;
+    border-radius: 8px; font-size: 13px;
+    color: #78350f; margin: 8px 0;
+  }
+  .draw-note strong { color: #92400e; }
+
+  .nav-actions {
+    display: flex; justify-content: space-between; gap: 10px;
+    margin-top: 20px; flex-wrap: wrap;
+  }
+
+  /* Marking mode */
+  .marking-card { background: white; border-radius: 16px; padding: 26px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .marking-instructions {
+    background: #ecfdf5; border-left: 4px solid #10b981;
+    padding: 14px 18px; border-radius: 8px;
+    color: #065f46; font-size: 14px; margin-bottom: 16px;
+  }
+  .marking-instructions strong { color: #064e3b; }
+
+  .mark-q {
+    border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 16px; margin: 12px 0; background: #fafaf9;
+  }
+  .mark-q-header {
+    display: flex; gap: 10px; align-items: center; margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .mark-q-body { font-size: 14px; }
+  .answer-row {
+    display: grid; grid-template-columns: auto 1fr; gap: 8px 14px;
+    margin: 10px 0; align-items: start;
+  }
+  .answer-label {
+    font-weight: 600; color: #6b7280; font-size: 13px;
+    padding-top: 6px;
+  }
+  .answer-value {
+    background: white; padding: 8px 12px;
+    border: 1px solid #e5e7eb; border-radius: 6px;
+    min-height: 36px; font-size: 14px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .answer-value.correct-ans {
+    background: #ecfdf5; border-color: #10b981;
+    color: #065f46;
+  }
+  .answer-value.her-ans { background: #f5f3ff; border-color: #c4b5fd; }
+  .answer-value em { color: #9ca3af; font-style: italic; }
+  .working {
+    font-size: 13px; color: #6b7280; margin-top: 6px;
+    padding: 8px 12px; background: #fffbeb; border-radius: 6px;
+    border-left: 3px solid #f59e0b;
+  }
+  .working strong { color: #78350f; }
+
+  .mark-buttons {
+    display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+    align-items: center;
+  }
+  .mark-btn {
+    border: 2px solid #e5e7eb; background: white;
+    padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    font-weight: 600; font-size: 13px;
+    transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .mark-btn:hover { border-color: #c4b5fd; }
+  .mark-btn.right.active {
+    background: #10b981; border-color: #10b981; color: white;
+  }
+  .mark-btn.half.active {
+    background: #f59e0b; border-color: #f59e0b; color: white;
+  }
+  .mark-btn.wrong.active {
+    background: #ef4444; border-color: #ef4444; color: white;
+  }
+  .mark-status {
+    margin-left: auto; font-size: 13px; color: #6b7280; font-weight: 600;
+  }
+  .mark-status.scored { color: #065f46; }
+
+  /* Results page */
+  .results-card {
+    background: white; border-radius: 18px; padding: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .big-score {
+    font-size: 56px; font-weight: 800; color: #7c3aed;
+    margin: 16px 0;
+  }
+  .big-score .total { font-size: 32px; color: #9ca3af; }
+  .percent {
+    font-size: 20px; font-weight: 700;
+    background: #ede9fe; color: #5b21b6;
+    padding: 6px 16px; border-radius: 20px;
+    display: inline-block;
+  }
+  .breakdown {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px; margin: 24px 0;
+  }
+  .breakdown-cell {
+    background: #f9fafb; padding: 14px; border-radius: 10px;
+    text-align: left;
+  }
+  .breakdown-cell h4 { color: #5b21b6; font-size: 13px; margin-bottom: 6px; }
+  .breakdown-cell .score { font-size: 18px; font-weight: 700; color: #1f2937; }
+  .breakdown-cell .meta { font-size: 12px; color: #6b7280; }
+
+  .weak-spots {
+    background: #fef3c7; border-left: 4px solid #f59e0b;
+    padding: 14px 18px; border-radius: 8px;
+    text-align: left; margin-top: 16px;
+    font-size: 14px; color: #78350f;
+  }
+  .weak-spots h4 { color: #92400e; margin-bottom: 8px; }
+  .weak-spots ul { padding-left: 20px; }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .section-card, header.cover, .marking-card, .results-card { padding: 18px; }
+    header.cover h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container" id="root"></div>
+
+<script>
+// ============================================================
+// Test data — 2024 Year 7 Task 2 (43 marks)
+// ============================================================
+const TEST = {
+  year: 2024,
+  title: '2024 Year 7 Maths — Practice Test',
+  school: 'Year 7 · Task 2 · Term 2',
+  topicsCovered: 'Whole Numbers, Integers, Angles & Fractions',
+  sections: [
+    {
+      id: 's1', name: 'Section I — Non-Calculator', marks: 13, timing: '15 minutes',
+      topics: [
+        {
+          name: 'Whole Numbers & Integers',
+          questions: [
+            {
+              id: 'nc1', num: 1, marks: 1, type: 'mc',
+              prompt: 'Which one of these has the same value as <strong>12 × 3</strong>?',
+              options: [
+                { label: 'A', text: '10 + 3 + 2' },
+                { label: 'B', text: '10 × 3 + 2' },
+                { label: 'C', text: '10 × 3 + 3' },
+                { label: 'D', text: '10 × 3 + 6' },
+              ],
+              correct: 'D',
+              working: '12 × 3 = 36. Test each: A=15, B=32, C=33, D=36. ✓',
+            },
+            {
+              id: 'nc2', num: 2, marks: 2, type: 'multipart',
+              prompt: 'From the integers <strong>−8, −4, −1, 2, 6</strong>',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'State three integers that multiply to give −12.',
+                  inputType: 'text', placeholder: 'e.g. -1, 2, 6',
+                  correct: '−1, 2, 6', alts: ['-1, 2, 6','-1,2,6','-1 2 6'],
+                  working: '−1 × 2 × 6 = −12' },
+                { id: 'b', label: 'b)', prompt: 'State three integers that add to −3.',
+                  inputType: 'text', placeholder: 'e.g. -4, -1, 2',
+                  correct: '−4, −1, 2', alts: ['-4, -1, 2','-4,-1,2'],
+                  working: '−4 + (−1) + 2 = −3' },
+              ],
+            },
+            {
+              id: 'nc3', num: 3, marks: 1, type: 'text',
+              prompt: 'A building has 15 floors above the ground level and 4 levels of carpark below the ground floor. If Kay is in the car park 2 levels below the ground level floor and takes the lift up 9 levels, which floor is Kay now on?',
+              placeholder: 'Floor number',
+              correct: 'Floor 7',
+              alts: ['7','floor 7','level 7','7th floor'],
+              working: 'Start at −2, go up 9 → −2 + 9 = 7. She is on the 7th floor.',
+            },
+            {
+              id: 'nc4', num: 4, marks: 4, type: 'multipart',
+              prompt: 'Solve:',
+              parts: [
+                { id: 'a', label: 'a.', prompt: '8 − −3 =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '11', working: '8 − (−3) = 8 + 3 = 11' },
+                { id: 'b', label: 'b.', prompt: '−2 × 5 + 3 × 7 =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '11', working: '−2 × 5 = −10; 3 × 7 = 21; −10 + 21 = 11' },
+                { id: 'c', label: 'c.', prompt: '−3 − (5 − 6) =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '−2', alts: ['-2'], working: '5 − 6 = −1; −3 − (−1) = −3 + 1 = −2' },
+                { id: 'd', label: 'd.', prompt: '−45 ÷ (−3) + 16 ÷ 4 − 5 =',
+                  inputType: 'numeric', placeholder: '?',
+                  correct: '14', working: '−45 ÷ −3 = 15; 16 ÷ 4 = 4; 15 + 4 − 5 = 14' },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'Angles',
+          questions: [
+            {
+              id: 'nc5', num: 5, marks: 1, type: 'draw',
+              prompt: 'Using a ruler and protractor, draw an obtuse angle. Include the size of the angle.',
+              instruction: 'Draw this on paper. An obtuse angle is any angle between 90° and 180°.',
+              correctDesc: 'Any angle between 90° and 180° (e.g. 120°), correctly drawn and labelled.',
+              working: 'Examples of obtuse angles: 91°, 100°, 120°, 145°, 179°. Must be MORE than 90° and LESS than 180°.',
+            },
+            {
+              id: 'nc6', num: 6, marks: 1, type: 'text',
+              prompt: 'Name the angle marked in the diagram.',
+              diagram: 'nc6',
+              placeholder: 'e.g. ∠ABC',
+              correct: '∠RTS or ∠STR',
+              alts: ['rts','str','∠rts','∠str','<rts','<str','angle rts','angle str'],
+              working: 'The vertex (corner) is at T, so T goes in the MIDDLE of the name. The arms go to R and S. Both ∠RTS and ∠STR are correct.',
+            },
+            {
+              id: 'nc7', num: 7, marks: 1, type: 'text',
+              prompt: 'Name an angle that is adjacent to ∠RQS in this diagram.',
+              diagram: 'nc7',
+              placeholder: 'e.g. ∠XYZ',
+              correct: '∠RQU or ∠SQT',
+              alts: ['rqu','sqt','uqr','tqs','∠rqu','∠sqt','<rqu','<sqt','angle rqu','angle sqt'],
+              working: 'Adjacent angles share a side. ∠RQS shares ray QR with ∠RQU, and shares ray QS with ∠SQT. Both are valid.',
+            },
+          ],
+        },
+        {
+          name: 'Fractions',
+          questions: [
+            {
+              id: 'nc8', num: 8, marks: 1, type: 'mc',
+              prompt: 'Which arrow is pointing closest to the location <strong>¾</strong> on the number line?',
+              diagram: 'nc8',
+              options: [
+                { label: 'A', text: 'Arrow 1 (just past ½)' },
+                { label: 'B', text: 'Arrow 2 (about ¾)' },
+                { label: 'C', text: 'Arrow 3 (just past 1)' },
+                { label: 'D', text: 'Arrow 4 (about 1½)' },
+              ],
+              correct: 'B',
+              working: '¾ is halfway between ½ and 1. Arrow 2 sits right around there.',
+            },
+            {
+              id: 'nc9', num: 9, marks: 1, type: 'mc',
+              prompt: 'Circle which fraction is larger: <strong>⅘ or ⅝</strong>?',
+              options: [
+                { label: 'A', text: '⅘ (four fifths)' },
+                { label: 'B', text: '⅝ (five eighths)' },
+              ],
+              correct: 'A',
+              working: 'Common denominator 40: ⅘ = 32/40, ⅝ = 25/40. So ⅘ is larger.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 's2', name: 'Section II — Calculator Allowed', marks: 26, timing: '25 minutes',
+      topics: [
+        {
+          name: 'Whole Numbers & Integers',
+          questions: [
+            {
+              id: 'ca1', num: 1, marks: 1, type: 'text',
+              prompt: 'Arrange the following integers in <strong>ascending</strong> order: 15, −2, 0, −20, 5, 100',
+              placeholder: 'e.g. -20, -2, 0, 5, 15, 100',
+              correct: '−20, −2, 0, 5, 15, 100',
+              alts: ['-20, -2, 0, 5, 15, 100','-20,-2,0,5,15,100','−20,−2,0,5,15,100'],
+              working: 'Ascending = smallest to largest. Most negative is smallest: −20 < −2 < 0 < 5 < 15 < 100.',
+            },
+            {
+              id: 'ca2', num: 2, marks: 2, type: 'numeric',
+              prompt: 'Nancy walked 4 km East and then 13 km West. How far is she from her starting position?',
+              instruction: 'Number line working is on your paper. Just put the final distance here.',
+              placeholder: 'km',
+              correct: '9 km',
+              alts: ['9','9km','9 km','9 km west'],
+              working: 'Start at 0. Go East 4 → at +4. Go West 13 → at +4 − 13 = −9. She is 9 km west of her starting point, so 9 km from start.',
+            },
+            {
+              id: 'ca3', num: 3, marks: 2, type: 'numeric',
+              prompt: 'Scott had $35 in his bank account yesterday but was allowed to withdraw $75. Today he deposited $50 into his bank account. Write a sum for this and find the final balance.',
+              placeholder: 'Final balance ($)',
+              correct: '$10',
+              alts: ['10','$10','10.00','$10.00'],
+              working: '35 − 75 + 50 = −40 + 50 = $10. Sum: 35 − 75 + 50 = $10.',
+            },
+          ],
+        },
+        {
+          name: 'Fractions',
+          questions: [
+            {
+              id: 'ca4', num: 4, marks: 1, type: 'draw',
+              prompt: 'Shade in <strong>⅖</strong> of this shape.',
+              diagram: 'ca4',
+              instruction: 'Shade on paper. Shape has 5 cells — shade any 2 of them.',
+              correctDesc: 'Any 2 of the 5 cells shaded.',
+              working: '⅖ means 2 out of 5 parts.',
+            },
+            {
+              id: 'ca5', num: 5, marks: 1, type: 'numeric',
+              prompt: 'Complete this equivalent fraction: ½ = ?/8',
+              placeholder: 'Numerator',
+              correct: '4',
+              working: 'Multiply top and bottom by 4: 1×4=4, 2×4=8. So ½ = 4/8.',
+            },
+            {
+              id: 'ca6', num: 6, marks: 1, type: 'text',
+              prompt: 'Change this improper fraction into a mixed numeral: 71/10 =',
+              placeholder: 'e.g. 7 1/10',
+              correct: '7 1/10',
+              alts: ['7 1/10','7  1/10','7 and 1/10','71/10'],
+              working: '71 ÷ 10 = 7 remainder 1. So 71/10 = 7 1/10.',
+            },
+            {
+              id: 'ca7', num: 7, marks: 1, type: 'text',
+              prompt: 'Simplify this fraction: 36/48 =',
+              placeholder: 'e.g. 3/4',
+              correct: '3/4',
+              alts: ['3/4','¾'],
+              working: 'Divide top and bottom by 12 (or by 2 three times, or by 4 then 3): 36÷12=3, 48÷12=4. So 36/48 = 3/4.',
+            },
+            {
+              id: 'ca8', num: 8, marks: 1, type: 'text',
+              prompt: 'Change this mixed numeral into an improper fraction: 6¾ =',
+              placeholder: 'e.g. 27/4',
+              correct: '27/4',
+              alts: ['27/4'],
+              working: '(6 × 4 + 3) / 4 = (24 + 3) / 4 = 27/4.',
+            },
+            {
+              id: 'ca9', num: 9, marks: 2, type: 'text',
+              prompt: 'What fraction of 2 hours is 40 minutes? Make sure your answer is written in <strong>simplest</strong> form.',
+              placeholder: 'e.g. 1/3',
+              correct: '1/3',
+              alts: ['1/3','⅓'],
+              working: '2 hours = 120 minutes. 40/120 = 4/12 = 1/3.',
+            },
+          ],
+        },
+        {
+          name: 'Angles',
+          questions: [
+            {
+              id: 'ca10', num: 10, marks: 5, type: 'multipart',
+              prompt: 'Complete these statements:',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'Supplementary angles add to ___',
+                  inputType: 'text', placeholder: 'e.g. 180°',
+                  correct: '180°', alts: ['180','180°','180 degrees'],
+                  working: 'Supplementary = sup180.' },
+                { id: 'b', label: 'b)', prompt: 'Complementary angles add to ___',
+                  inputType: 'text', placeholder: 'e.g. 90°',
+                  correct: '90°', alts: ['90','90°','90 degrees'],
+                  working: 'Complementary = corner of 90°.' },
+                { id: 'c', label: 'c)', prompt: 'In parallel lines, alternate angles are ___',
+                  inputType: 'text', placeholder: 'e.g. equal',
+                  correct: 'equal', alts: ['equal','the same'],
+                  working: 'Alternate angles (Z-shape) are equal.' },
+                { id: 'd', label: 'd)', prompt: 'In parallel lines, corresponding angles are ___',
+                  inputType: 'text', placeholder: 'e.g. equal',
+                  correct: 'equal', alts: ['equal','the same'],
+                  working: 'Corresponding angles (F-shape) are equal.' },
+                { id: 'e', label: 'e)', prompt: 'In parallel lines, co-interior angles add to ___',
+                  inputType: 'text', placeholder: 'e.g. 180°',
+                  correct: '180°', alts: ['180','180°','180 degrees'],
+                  working: 'Co-interior angles (C-shape, same side of transversal) add to 180°.' },
+              ],
+            },
+            {
+              id: 'ca11', num: 11, marks: 4, type: 'multipart',
+              prompt: 'For each diagram, use the angle given to find the value of each pronumeral. Then provide the mathematical reasoning. <em>Do not measure with a protractor.</em>',
+              parts: [
+                { id: 'a', label: 'a)', prompt: 'Two straight lines cross. One angle is 32°. Find x°.',
+                  diagram: 'ca11a',
+                  inputType: 'numericPlusReason',
+                  correct: '32°', altsValue: ['32','32°'],
+                  correctReason: 'Vertically opposite angles are equal.',
+                  altsReason: ['vertically opposite','vert opp','vertically opp','vertical opposite'],
+                  working: 'When two lines cross, the angle directly opposite is equal. So x = 32°.' },
+                { id: 'b', label: 'b)', prompt: 'Three angles on a straight line: y°, a right angle (90°), and 61°. Find y°.',
+                  diagram: 'ca11b',
+                  inputType: 'numericPlusReason',
+                  correct: '29°', altsValue: ['29','29°'],
+                  correctReason: 'Angles on a straight line add to 180°.',
+                  altsReason: ['angles on a straight line','straight line','sum to 180','supplementary'],
+                  working: 'y + 90 + 61 = 180. So y = 180 − 90 − 61 = 29°.' },
+              ],
+            },
+            {
+              id: 'ca12', num: 12, marks: 2, type: 'numericPlusReason',
+              prompt: 'Find the value of x and give a reason for your answer.',
+              diagram: 'ca12',
+              instruction: 'Four angles around a point: 110°, 25°, 20°, and x°.',
+              correct: '205°', altsValue: ['205','205°'],
+              correctReason: 'Angles at a point add to 360° (revolution).',
+              altsReason: ['angles at a point','revolution','360','at a point'],
+              working: 'Sum of angles at a point = 360°. So x = 360 − 110 − 25 − 20 = 205°.',
+            },
+            {
+              id: 'ca13', num: 13, marks: 3, type: 'text',
+              prompt: 'BC and EF are parallel lines (shown by the arrows). The transversal passes through B and E. ∠ABE = 120°. Find the value of y° at vertex E, giving reasons.',
+              diagram: 'ca13',
+              placeholder: 'Type your answer (y = ?) and reasoning',
+              inputType: 'longText',
+              correct: 'y = 60°',
+              altsValue: ['60','60°','y=60','y = 60'],
+              correctReason: 'Either: (1) ∠DEB = 60° (co-interior with 120° on parallel lines), then y = 60° (vertically opposite to ∠DEB). OR: y = 60° using corresponding angles & vertically opposite logic.',
+              working: '∠DEB and 120° are co-interior angles on parallel lines (add to 180°), so ∠DEB = 60°. y is vertically opposite to ∠DEB, so y = 60°.',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+// ============================================================
+// State
+// ============================================================
+const state = {
+  answers: {},  // qId or qId.partId → string answer
+  marks: {},    // qId or qId.partId → 'right' | 'half' | 'wrong'
+  mode: 'cover', // cover | test | marking | results
+  currentSection: 0,
+};
+
+// ============================================================
+// Diagram SVGs
+// ============================================================
+const DIAGRAMS = {
+  // Q6 Non-Calc: angle at T (R upper-left, S upper-right)
+  nc6: `<svg viewBox="0 0 320 200" width="100%" style="max-width:340px">
+    <line x1="200" y1="160" x2="80" y2="110" stroke="#1f2937" stroke-width="2"/>
+    <line x1="200" y1="160" x2="245" y2="40" stroke="#1f2937" stroke-width="2"/>
+    <path d="M 230 160 A 30 30 0 0 0 213 132" stroke="#7c3aed" stroke-width="2.5" fill="rgba(124,58,237,0.15)"/>
+    <circle cx="80" cy="110" r="3" fill="#1f2937"/>
+    <text x="64" y="108" font-size="16" font-weight="bold">R</text>
+    <circle cx="245" cy="40" r="3" fill="#1f2937"/>
+    <text x="250" y="38" font-size="16" font-weight="bold">S</text>
+    <circle cx="200" cy="160" r="3" fill="#1f2937"/>
+    <text x="205" y="180" font-size="16" font-weight="bold">T</text>
+  </svg>`,
+
+  // Q7 Non-Calc: Q at centre with U upper-left, T right, R lower-left, S lower-right
+  nc7: `<svg viewBox="0 0 400 220" width="100%" style="max-width:420px">
+    <line x1="200" y1="110" x2="120" y2="50" stroke="#1f2937" stroke-width="2"/>
+    <line x1="200" y1="110" x2="370" y2="100" stroke="#1f2937" stroke-width="2"/>
+    <line x1="200" y1="110" x2="120" y2="175" stroke="#1f2937" stroke-width="2"/>
+    <line x1="200" y1="110" x2="280" y2="195" stroke="#1f2937" stroke-width="2"/>
+    <circle cx="200" cy="110" r="3" fill="#1f2937"/>
+    <text x="205" y="105" font-size="16" font-weight="bold">Q</text>
+    <circle cx="120" cy="50" r="3" fill="#1f2937"/>
+    <text x="100" y="48" font-size="16" font-weight="bold">U</text>
+    <circle cx="370" cy="100" r="3" fill="#1f2937"/>
+    <text x="378" y="100" font-size="16" font-weight="bold">T</text>
+    <circle cx="120" cy="175" r="3" fill="#1f2937"/>
+    <text x="98" y="180" font-size="16" font-weight="bold">R</text>
+    <circle cx="280" cy="195" r="3" fill="#1f2937"/>
+    <text x="285" y="205" font-size="16" font-weight="bold">S</text>
+  </svg>`,
+
+  // Q8 Non-Calc: number line 0-2 with 4 arrows
+  nc8: `<svg viewBox="0 0 460 140" width="100%" style="max-width:480px">
+    <line x1="20" y1="40" x2="440" y2="40" stroke="#1f2937" stroke-width="2"/>
+    <polygon points="440,40 432,36 432,44" fill="#1f2937"/>
+    <polygon points="20,40 28,36 28,44" fill="#1f2937"/>
+    <!-- ticks at 0, 0.5, 1, 1.5, 2 -->
+    <g stroke="#1f2937" stroke-width="1.5">
+      <line x1="80" y1="35" x2="80" y2="45"/>
+      <line x1="180" y1="35" x2="180" y2="45"/>
+      <line x1="280" y1="35" x2="280" y2="45"/>
+      <line x1="380" y1="35" x2="380" y2="45"/>
+    </g>
+    <text x="76" y="28" font-size="14" font-weight="bold">0</text>
+    <text x="276" y="28" font-size="14" font-weight="bold">1</text>
+    <text x="376" y="28" font-size="14" font-weight="bold">2</text>
+    <!-- arrows at: ~0.55 (A), ~0.75 (B), ~1.05 (C), ~1.5 (D) -->
+    <g fill="#3b82f6" stroke="#3b82f6" stroke-width="2">
+      <path d="M 190 90 L 190 56 M 184 64 L 190 56 L 196 64"/>
+      <text x="184" y="110" font-size="13" font-weight="bold">A</text>
+      <path d="M 240 90 L 240 56 M 234 64 L 240 56 L 246 64"/>
+      <text x="234" y="110" font-size="13" font-weight="bold">B</text>
+      <path d="M 295 90 L 295 56 M 289 64 L 295 56 L 301 64"/>
+      <text x="290" y="110" font-size="13" font-weight="bold">C</text>
+      <path d="M 350 90 L 350 56 M 344 64 L 350 56 L 356 64"/>
+      <text x="344" y="110" font-size="13" font-weight="bold">D</text>
+    </g>
+  </svg>`,
+
+  // Q4 Calc: 1x5 rectangle shape
+  ca4: `<svg viewBox="0 0 360 80" width="100%" style="max-width:360px">
+    <g fill="white" stroke="#1f2937" stroke-width="2">
+      <rect x="10" y="20" width="64" height="40"/>
+      <rect x="74" y="20" width="64" height="40"/>
+      <rect x="138" y="20" width="64" height="40"/>
+      <rect x="202" y="20" width="64" height="40"/>
+      <rect x="266" y="20" width="64" height="40"/>
+    </g>
+  </svg>`,
+
+  // Q11a Calc: two crossing lines with 32° and x°
+  ca11a: `<svg viewBox="0 0 360 200" width="100%" style="max-width:380px">
+    <line x1="40" y1="50" x2="320" y2="150" stroke="#1f2937" stroke-width="2"/>
+    <line x1="40" y1="150" x2="320" y2="50" stroke="#1f2937" stroke-width="2"/>
+    <path d="M 138 86 A 30 30 0 0 0 138 114" stroke="#1f2937" stroke-width="1.5" fill="none"/>
+    <text x="108" y="105" font-size="15" font-weight="bold">32°</text>
+    <path d="M 222 86 A 30 30 0 0 1 222 114" stroke="#7c3aed" stroke-width="2" fill="rgba(124,58,237,0.15)"/>
+    <text x="230" y="105" font-size="15" font-weight="bold" fill="#7c3aed">x°</text>
+  </svg>`,
+
+  // Q11b Calc: y° + 90° + 61° on straight line
+  ca11b: `<svg viewBox="0 0 360 180" width="100%" style="max-width:380px">
+    <line x1="30" y1="140" x2="330" y2="140" stroke="#1f2937" stroke-width="2"/>
+    <line x1="180" y1="140" x2="115" y2="40" stroke="#1f2937" stroke-width="2"/>
+    <line x1="180" y1="140" x2="240" y2="40" stroke="#1f2937" stroke-width="2"/>
+    <!-- right angle square between the two raised lines -->
+    <path d="M 162 122 L 175 113 L 184 124 L 171 132 Z" fill="none" stroke="#1f2937" stroke-width="1.5"/>
+    <!-- y° arc on left -->
+    <path d="M 145 140 A 35 35 0 0 1 158 117" stroke="#7c3aed" stroke-width="2" fill="rgba(124,58,237,0.15)"/>
+    <text x="135" y="135" font-size="15" font-weight="bold" fill="#7c3aed">y°</text>
+    <!-- 61° arc on right -->
+    <path d="M 215 140 A 35 35 0 0 0 198 113" stroke="#1f2937" stroke-width="1.5" fill="none"/>
+    <text x="217" y="135" font-size="15" font-weight="bold">61°</text>
+  </svg>`,
+
+  // Q12 Calc: angles at a point — 110°, 25°, 20°, x°
+  ca12: `<svg viewBox="0 0 360 220" width="100%" style="max-width:380px">
+    <line x1="180" y1="100" x2="40" y2="120" stroke="#1f2937" stroke-width="2"/>
+    <line x1="180" y1="100" x2="320" y2="115" stroke="#1f2937" stroke-width="2"/>
+    <line x1="180" y1="100" x2="290" y2="200" stroke="#1f2937" stroke-width="2"/>
+    <circle cx="180" cy="100" r="3" fill="#1f2937"/>
+    <!-- x° arc on top (large reflex) -->
+    <path d="M 50 90 A 130 130 0 1 1 290 200" stroke="#7c3aed" stroke-width="2.5" fill="none"/>
+    <text x="172" y="35" font-size="16" font-weight="bold" fill="#7c3aed">x°</text>
+    <text x="100" y="85" font-size="14" font-weight="bold">110°</text>
+    <text x="248" y="100" font-size="14" font-weight="bold">25°</text>
+    <text x="225" y="160" font-size="14" font-weight="bold">20°</text>
+  </svg>`,
+
+  // Q13 Calc: parallel lines AC and DF with transversal through B,E. 120° at B, y° at E
+  ca13: `<svg viewBox="0 0 400 240" width="100%" style="max-width:420px">
+    <!-- top line A--B--C -->
+    <line x1="30" y1="80" x2="280" y2="60" stroke="#1f2937" stroke-width="2"/>
+    <!-- arrow on BC -->
+    <polygon points="280,60 270,57 273,67" fill="#1f2937"/>
+    <!-- bottom line D--E--F -->
+    <line x1="50" y1="180" x2="320" y2="160" stroke="#1f2937" stroke-width="2"/>
+    <polygon points="320,160 310,158 312,168" fill="#1f2937"/>
+    <!-- transversal through B (top) to bottom through E -->
+    <line x1="130" y1="20" x2="240" y2="220" stroke="#1f2937" stroke-width="2"/>
+    <!-- Labels: A on far left top, B vertex top, C right top -->
+    <text x="20" y="78" font-size="14" font-weight="bold">A</text>
+    <circle cx="155" cy="68" r="3" fill="#1f2937"/>
+    <text x="148" y="60" font-size="14" font-weight="bold">B</text>
+    <text x="275" y="55" font-size="14" font-weight="bold">C</text>
+    <text x="40" y="178" font-size="14" font-weight="bold">D</text>
+    <circle cx="205" cy="170" r="3" fill="#1f2937"/>
+    <text x="195" y="185" font-size="14" font-weight="bold">E</text>
+    <text x="320" y="158" font-size="14" font-weight="bold">F</text>
+    <!-- 120° label at angle ABE (below B on left side of transversal) -->
+    <text x="115" y="95" font-size="13" font-weight="bold">120°</text>
+    <path d="M 137 75 A 22 22 0 0 0 144 89" stroke="#1f2937" stroke-width="1.3" fill="none"/>
+    <!-- y° at E (below right) -->
+    <text x="220" y="205" font-size="14" font-weight="bold" fill="#7c3aed">y°</text>
+    <path d="M 220 175 A 18 18 0 0 1 215 192" stroke="#7c3aed" stroke-width="2" fill="rgba(124,58,237,0.15)"/>
+  </svg>`,
+};
+
+// ============================================================
+// Helpers
+// ============================================================
+function el(html) {
+  const div = document.createElement('div');
+  div.innerHTML = html.trim();
+  return div.firstElementChild;
+}
+
+function allQuestionsFlat() {
+  const flat = [];
+  TEST.sections.forEach(sec => sec.topics.forEach(t => t.questions.forEach(q => {
+    flat.push({ section: sec.name, topic: t.name, ...q });
+  })));
+  return flat;
+}
+
+function totalMarks() {
+  return allQuestionsFlat().reduce((s, q) => s + q.marks, 0);
+}
+
+function scoreSoFar() {
+  let earned = 0;
+  allQuestionsFlat().forEach(q => {
+    if (q.parts) {
+      const parts = q.parts.length;
+      const perPart = q.marks / parts;
+      q.parts.forEach(p => {
+        const mk = state.marks[q.id + '.' + p.id];
+        if (mk === 'right') earned += perPart;
+        else if (mk === 'half') earned += perPart / 2;
+      });
+    } else {
+      const mk = state.marks[q.id];
+      if (mk === 'right') earned += q.marks;
+      else if (mk === 'half') earned += q.marks / 2;
+    }
+  });
+  return Math.round(earned * 2) / 2; // round to half marks
+}
+
+// ============================================================
+// Render: Cover
+// ============================================================
+function renderCover() {
+  const total = totalMarks();
+  const html = `
+    <header class="cover">
+      <h1>${TEST.title}</h1>
+      <div class="school">${TEST.school} — ${TEST.topicsCovered}</div>
+
+      <div class="meta-grid">
+        <div class="meta-pill"><span class="num">${total}</span>Total marks</div>
+        <div class="meta-pill"><span class="num">${TEST.sections[0].marks}</span>Section I (Non-calc)</div>
+        <div class="meta-pill"><span class="num">${TEST.sections[1].marks}</span>Section II (Calc)</div>
+        <div class="meta-pill"><span class="num">40 min</span>Suggested time</div>
+      </div>
+
+      <div class="instructions">
+        <h3>How this works</h3>
+        <ul>
+          <li><strong>Do all questions first.</strong> Like a real exam — no answers shown as you go.</li>
+          <li>For questions that need <strong>drawing</strong> (e.g. drawing an angle, shading a shape), do them on paper. You'll just tick them off afterwards.</li>
+          <li>At the end, click <strong>Show answers &amp; mark</strong>. You'll see the correct answer next to yours and mark each one yourself.</li>
+          <li>You'll get a final score with a breakdown showing your weak spots.</li>
+          <li>Section I should be done <strong>without a calculator</strong>. Calculator is allowed for Section II.</li>
+        </ul>
+      </div>
+
+      <button class="btn" onclick="startTest()">Start the test</button>
+    </header>
+  `;
+  document.getElementById('root').innerHTML = html;
+}
+
+// ============================================================
+// Render: Test mode
+// ============================================================
+function renderTest() {
+  let html = '';
+  TEST.sections.forEach((sec, secIdx) => {
+    html += `<div class="section-card">
+      <div class="section-header">
+        <h2>${sec.name}</h2>
+        <div>
+          <span class="badge">${sec.marks} marks</span>
+          <span class="badge">${sec.timing}</span>
+        </div>
+      </div>`;
+    sec.topics.forEach(t => {
+      html += `<div class="topic-banner">${t.name}</div>`;
+      t.questions.forEach(q => {
+        html += renderQuestion(q);
+      });
+    });
+    html += `</div>`;
+  });
+  html += `
+    <div class="section-card" style="text-align:center;">
+      <h3 style="color:#7c3aed;margin-bottom:8px;">Finished?</h3>
+      <p style="color:#6b7280;margin-bottom:14px;font-size:14px">
+        When you've done your best on every question, hit the button below to see the answers and mark your work.
+      </p>
+      <button class="btn btn-success" onclick="startMarking()">Show answers &amp; mark</button>
+    </div>
+  `;
+  document.getElementById('root').innerHTML = html;
+  attachAnswerHandlers();
+}
+
+function renderQuestion(q) {
+  const diagram = q.diagram ? `<div class="diagram">${DIAGRAMS[q.diagram] || ''}</div>` : '';
+  let body = '';
+  if (q.type === 'mc') {
+    body = `<div class="mc-options">${q.options.map(o => `
+      <label class="mc-option" data-q="${q.id}" data-label="${o.label}">
+        <input type="radio" name="${q.id}" value="${o.label}"/>
+        <span class="mc-letter">${o.label}</span>
+        <span>${o.text}</span>
+      </label>`).join('')}</div>`;
+  } else if (q.type === 'text' || q.type === 'numeric') {
+    if (q.inputType === 'longText') {
+      body = `<textarea class="answer-input" data-q="${q.id}" placeholder="${q.placeholder || 'Your answer'}"></textarea>`;
+    } else {
+      body = `<input type="text" class="answer-input small" data-q="${q.id}" placeholder="${q.placeholder || 'Your answer'}"/>`;
+    }
+  } else if (q.type === 'numericPlusReason') {
+    body = `
+      <div style="display:grid;gap:8px;max-width:360px">
+        <input type="text" class="answer-input small" data-q="${q.id}.value" placeholder="Answer (e.g. 205°)"/>
+        <textarea class="answer-input" data-q="${q.id}.reason" placeholder="Your reasoning" style="min-height:50px"></textarea>
+      </div>`;
+  } else if (q.type === 'multipart') {
+    body = `<div class="multipart">${q.parts.map(p => {
+      const pDiagram = p.diagram ? `<div class="diagram">${DIAGRAMS[p.diagram] || ''}</div>` : '';
+      let partInput = '';
+      if (p.inputType === 'numericPlusReason') {
+        partInput = `
+          <input type="text" class="answer-input small" data-q="${q.id}.${p.id}.value" placeholder="Answer" style="margin-bottom:6px"/>
+          <textarea class="answer-input" data-q="${q.id}.${p.id}.reason" placeholder="Reason" style="min-height:50px"></textarea>`;
+      } else {
+        partInput = `<input type="text" class="answer-input small" data-q="${q.id}.${p.id}" placeholder="${p.placeholder || 'Answer'}"/>`;
+      }
+      return `<div class="part">
+        <div class="part-label">${p.label} ${p.prompt}</div>
+        ${pDiagram}
+        ${partInput}
+      </div>`;
+    }).join('')}</div>`;
+  } else if (q.type === 'draw') {
+    body = `<div class="draw-note"><strong>📝 On paper:</strong> ${q.instruction}</div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:#4b5563;cursor:pointer">
+        <input type="checkbox" data-q="${q.id}" style="width:18px;height:18px;accent-color:#7c3aed"/>
+        I've done this on paper
+      </label>`;
+  }
+
+  return `
+    <div class="question">
+      <div class="question-meta">
+        <span class="q-num">${q.num}</span>
+        <span class="q-marks">${q.marks} mark${q.marks > 1 ? 's' : ''}</span>
+      </div>
+      <div class="q-prompt">${q.prompt}</div>
+      ${diagram}
+      ${body}
+    </div>
+  `;
+}
+
+function attachAnswerHandlers() {
+  document.querySelectorAll('input, textarea').forEach(inp => {
+    if (inp.type === 'radio') {
+      inp.addEventListener('change', () => {
+        const lab = inp.closest('label');
+        document.querySelectorAll(`label[data-q="${lab.dataset.q}"]`).forEach(l => l.classList.remove('selected'));
+        lab.classList.add('selected');
+        state.answers[lab.dataset.q] = inp.value;
+      });
+    } else if (inp.type === 'checkbox') {
+      inp.addEventListener('change', () => {
+        state.answers[inp.dataset.q] = inp.checked ? 'done' : '';
+      });
+    } else {
+      inp.addEventListener('input', () => {
+        state.answers[inp.dataset.q] = inp.value;
+      });
+    }
+  });
+  // Restore prior answers if any
+  Object.entries(state.answers).forEach(([k, v]) => {
+    const inps = document.querySelectorAll(`[data-q="${k}"]`);
+    inps.forEach(inp => {
+      if (inp.type === 'radio') {
+        if (inp.value === v) { inp.checked = true; inp.closest('label').classList.add('selected'); }
+      } else if (inp.type === 'checkbox') {
+        inp.checked = v === 'done';
+      } else {
+        inp.value = v;
+      }
+    });
+  });
+}
+
+// ============================================================
+// Render: Marking
+// ============================================================
+function renderMarking() {
+  let html = `
+    <div class="marking-card">
+      <h2 style="color:#7c3aed;margin-bottom:6px">Mark your work</h2>
+      <div class="marking-instructions">
+        <strong>How to mark:</strong> For each question, compare YOUR answer to the CORRECT answer.
+        Click <strong>✓ Right</strong>, <strong>± Half</strong> (if you got some but not all of the marks),
+        or <strong>✗ Wrong</strong>. Be honest — that's how you learn what to work on.
+      </div>
+  `;
+
+  allQuestionsFlat().forEach(q => {
+    html += renderMarkBlock(q);
+  });
+
+  html += `
+      <div style="margin-top:20px;text-align:center;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-small" onclick="goToTest()">← Back to test</button>
+        <button class="btn" onclick="goToResults()">See my score</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('root').innerHTML = html;
+}
+
+function suggestAuto(q, partOrNull) {
+  // Simple auto-suggest: returns 'right' if answer trivially matches, else null
+  const ans = (partOrNull
+    ? state.answers[q.id + '.' + partOrNull.id]
+    : state.answers[q.id]) || '';
+  if (!ans) return null;
+  const target = partOrNull ? partOrNull : q;
+  if (q.type === 'mc' && !partOrNull) {
+    return (ans === q.correct) ? 'right' : null;
+  }
+  const norm = s => String(s || '').toLowerCase().replace(/[\s°$,]/g, '').replace(/−/g, '-').trim();
+  const userNorm = norm(ans);
+  const correctNorm = norm(target.correct);
+  if (userNorm === correctNorm) return 'right';
+  const alts = (target.alts || target.altsValue || []).map(norm);
+  if (alts.includes(userNorm)) return 'right';
+  return null;
+}
+
+function renderMarkBlock(q) {
+  const isMulti = q.parts && q.parts.length > 0;
+  const isNumReason = q.type === 'numericPlusReason';
+  let inner = '';
+
+  if (isMulti) {
+    inner = q.parts.map(p => {
+      const yourAns = state.answers[q.id + '.' + p.id] || '';
+      const yourValue = state.answers[q.id + '.' + p.id + '.value'] || '';
+      const yourReason = state.answers[q.id + '.' + p.id + '.reason'] || '';
+      const autoMark = suggestAuto(q, p);
+      const currentMark = state.marks[q.id + '.' + p.id] || autoMark;
+      if (autoMark && !state.marks[q.id + '.' + p.id]) {
+        state.marks[q.id + '.' + p.id] = autoMark;
+      }
+      if (p.inputType === 'numericPlusReason') {
+        return `<div class="part">
+          <div class="part-label">${p.label} ${p.prompt}</div>
+          ${p.diagram ? `<div class="diagram">${DIAGRAMS[p.diagram] || ''}</div>` : ''}
+          <div class="answer-row">
+            <div class="answer-label">Your answer:</div>
+            <div class="answer-value her-ans">${yourValue || '<em>(blank)</em>'}<br><span style="color:#6b7280">Reason: ${yourReason || '<em>(blank)</em>'}</span></div>
+            <div class="answer-label">Correct:</div>
+            <div class="answer-value correct-ans">${p.correct}<br><span>Reason: ${p.correctReason || '—'}</span></div>
+          </div>
+          ${p.working ? `<div class="working"><strong>Working:</strong> ${p.working}</div>` : ''}
+          ${renderMarkButtons(q.id + '.' + p.id, currentMark)}
+        </div>`;
+      }
+      return `<div class="part">
+        <div class="part-label">${p.label} ${p.prompt}</div>
+        <div class="answer-row">
+          <div class="answer-label">Your answer:</div>
+          <div class="answer-value her-ans">${yourAns || '<em>(blank)</em>'}</div>
+          <div class="answer-label">Correct:</div>
+          <div class="answer-value correct-ans">${p.correct}</div>
+        </div>
+        ${p.working ? `<div class="working"><strong>Working:</strong> ${p.working}</div>` : ''}
+        ${renderMarkButtons(q.id + '.' + p.id, currentMark)}
+      </div>`;
+    }).join('');
+  } else if (isNumReason) {
+    const yourValue = state.answers[q.id + '.value'] || '';
+    const yourReason = state.answers[q.id + '.reason'] || '';
+    const autoMark = suggestAuto(q);
+    const currentMark = state.marks[q.id] || autoMark;
+    if (autoMark && !state.marks[q.id]) state.marks[q.id] = autoMark;
+    inner = `
+      <div class="answer-row">
+        <div class="answer-label">Your answer:</div>
+        <div class="answer-value her-ans">${yourValue || '<em>(blank)</em>'}<br><span style="color:#6b7280">Reason: ${yourReason || '<em>(blank)</em>'}</span></div>
+        <div class="answer-label">Correct:</div>
+        <div class="answer-value correct-ans">${q.correct}<br><span>Reason: ${q.correctReason}</span></div>
+      </div>
+      ${q.working ? `<div class="working"><strong>Working:</strong> ${q.working}</div>` : ''}
+      ${renderMarkButtons(q.id, currentMark)}
+    `;
+  } else if (q.type === 'draw') {
+    const didIt = state.answers[q.id] === 'done';
+    const currentMark = state.marks[q.id];
+    inner = `
+      <div class="answer-row">
+        <div class="answer-label">On paper:</div>
+        <div class="answer-value her-ans">${didIt ? '✓ You marked this as done' : '<em>(not marked done)</em>'}</div>
+        <div class="answer-label">Looking for:</div>
+        <div class="answer-value correct-ans">${q.correctDesc}</div>
+      </div>
+      ${q.working ? `<div class="working"><strong>Tip:</strong> ${q.working}</div>` : ''}
+      <div class="draw-note">Check your paper. Mark yourself based on what you actually drew.</div>
+      ${renderMarkButtons(q.id, currentMark)}
+    `;
+  } else {
+    // Single text/numeric or MC
+    let yourAns = state.answers[q.id] || '';
+    const autoMark = suggestAuto(q);
+    const currentMark = state.marks[q.id] || autoMark;
+    if (autoMark && !state.marks[q.id]) state.marks[q.id] = autoMark;
+    let correctDisplay = q.correct;
+    if (q.type === 'mc') {
+      const opt = q.options.find(o => o.label === q.correct);
+      correctDisplay = `${q.correct} — ${opt ? opt.text : ''}`;
+      if (yourAns) {
+        const userOpt = q.options.find(o => o.label === yourAns);
+        yourAns = `${yourAns} — ${userOpt ? userOpt.text : ''}`;
+      }
+    }
+    inner = `
+      <div class="answer-row">
+        <div class="answer-label">Your answer:</div>
+        <div class="answer-value her-ans">${yourAns || '<em>(blank)</em>'}</div>
+        <div class="answer-label">Correct:</div>
+        <div class="answer-value correct-ans">${correctDisplay}</div>
+      </div>
+      ${q.working ? `<div class="working"><strong>Working:</strong> ${q.working}</div>` : ''}
+      ${renderMarkButtons(q.id, currentMark)}
+    `;
+  }
+
+  return `<div class="mark-q" id="mark-${q.id}">
+    <div class="mark-q-header">
+      <span class="q-num">${q.num}</span>
+      <span style="color:#6b7280;font-size:13px">${q.section} · ${q.topic}</span>
+      <span class="q-marks">${q.marks} mark${q.marks > 1 ? 's' : ''}</span>
+    </div>
+    <div class="q-prompt" style="font-size:14px">${q.prompt}</div>
+    ${q.diagram ? `<div class="diagram">${DIAGRAMS[q.diagram] || ''}</div>` : ''}
+    <div class="mark-q-body">${inner}</div>
+  </div>`;
+}
+
+function renderMarkButtons(key, currentMark) {
+  return `<div class="mark-buttons">
+    <button class="mark-btn right ${currentMark === 'right' ? 'active' : ''}" onclick="setMark('${key}','right')">✓ Right</button>
+    <button class="mark-btn half ${currentMark === 'half' ? 'active' : ''}" onclick="setMark('${key}','half')">± Half</button>
+    <button class="mark-btn wrong ${currentMark === 'wrong' ? 'active' : ''}" onclick="setMark('${key}','wrong')">✗ Wrong</button>
+    <span class="mark-status ${currentMark ? 'scored' : ''}">${currentMark ? 'Marked' : 'Pick one'}</span>
+  </div>`;
+}
+
+function setMark(key, value) {
+  state.marks[key] = value;
+  renderMarking();
+}
+
+// ============================================================
+// Render: Results
+// ============================================================
+function renderResults() {
+  const total = totalMarks();
+  const earned = scoreSoFar();
+  const pct = Math.round((earned / total) * 100);
+
+  // Breakdown by section + topic
+  const breakdown = [];
+  TEST.sections.forEach(sec => {
+    sec.topics.forEach(t => {
+      let topicEarned = 0, topicTotal = 0;
+      t.questions.forEach(q => {
+        topicTotal += q.marks;
+        if (q.parts) {
+          const perPart = q.marks / q.parts.length;
+          q.parts.forEach(p => {
+            const mk = state.marks[q.id + '.' + p.id];
+            if (mk === 'right') topicEarned += perPart;
+            else if (mk === 'half') topicEarned += perPart / 2;
+          });
+        } else {
+          const mk = state.marks[q.id];
+          if (mk === 'right') topicEarned += q.marks;
+          else if (mk === 'half') topicEarned += q.marks / 2;
+        }
+      });
+      breakdown.push({ section: sec.name, topic: t.name, earned: topicEarned, total: topicTotal });
+    });
+  });
+
+  // Weak spots — anything <50%
+  const weak = breakdown.filter(b => b.total > 0 && (b.earned / b.total) < 0.5);
+
+  // Wrong/half questions for "to revise" list
+  const toRevise = [];
+  allQuestionsFlat().forEach(q => {
+    if (q.parts) {
+      q.parts.forEach(p => {
+        const mk = state.marks[q.id + '.' + p.id];
+        if (mk === 'wrong' || mk === 'half') {
+          toRevise.push(`Q${q.num}${p.id} (${q.topic})`);
+        }
+      });
+    } else {
+      const mk = state.marks[q.id];
+      if (mk === 'wrong' || mk === 'half') {
+        toRevise.push(`Q${q.num} (${q.topic})`);
+      }
+    }
+  });
+
+  let emoji = '🌟';
+  let msg = 'Outstanding!';
+  if (pct < 50) { emoji = '💪'; msg = "Great practice — now you know where to focus."; }
+  else if (pct < 70) { emoji = '👍'; msg = "Solid effort. A few areas to tighten up."; }
+  else if (pct < 85) { emoji = '🎯'; msg = "Strong work — clear on most of it."; }
+
+  let html = `
+    <div class="results-card">
+      <div style="font-size:48px;margin-bottom:8px">${emoji}</div>
+      <h2 style="color:#7c3aed">${msg}</h2>
+      <div class="big-score">${earned} <span class="total">/ ${total}</span></div>
+      <div class="percent">${pct}%</div>
+
+      <div class="breakdown">
+        ${breakdown.map(b => {
+          const p = b.total > 0 ? Math.round((b.earned/b.total)*100) : 0;
+          return `<div class="breakdown-cell">
+            <h4>${b.topic}</h4>
+            <div class="score">${b.earned} / ${b.total}</div>
+            <div class="meta">${b.section.split('—')[0].trim()} · ${p}%</div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      ${weak.length ? `
+        <div class="weak-spots">
+          <h4>📚 Topics to revise</h4>
+          <ul>${weak.map(w => `<li><strong>${w.topic}</strong> — ${w.earned} / ${w.total} marks</li>`).join('')}</ul>
+        </div>
+      ` : ''}
+
+      ${toRevise.length ? `
+        <div class="weak-spots" style="background:#dbeafe;border-color:#3b82f6;color:#1e3a8a">
+          <h4 style="color:#1e40af">📝 Questions to review</h4>
+          <p style="font-size:13px">Go back over these specific questions:</p>
+          <ul>${toRevise.map(q => `<li>${q}</li>`).join('')}</ul>
+        </div>
+      ` : `<div class="weak-spots" style="background:#ecfdf5;border-color:#10b981;color:#065f46">
+        <h4 style="color:#064e3b">🎉 Nothing to revise!</h4>
+        <p style="font-size:13px">You marked every question correct. Time for another practice test!</p>
+      </div>`}
+
+      <div style="margin-top:20px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-small" onclick="goToMarking()">← Re-mark</button>
+        <button class="btn btn-small" onclick="restartTest()">Take it again</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('root').innerHTML = html;
+}
+
+// ============================================================
+// Navigation
+// ============================================================
+function startTest() { state.mode = 'test'; renderTest(); window.scrollTo(0, 0); }
+function startMarking() { state.mode = 'marking'; renderMarking(); window.scrollTo(0, 0); }
+function goToTest() { state.mode = 'test'; renderTest(); window.scrollTo(0, 0); }
+function goToMarking() { state.mode = 'marking'; renderMarking(); window.scrollTo(0, 0); }
+function goToResults() { state.mode = 'results'; renderResults(); window.scrollTo(0, 0); }
+function restartTest() {
+  if (!confirm('This will clear all your answers and start fresh. Continue?')) return;
+  state.answers = {};
+  state.marks = {};
+  state.mode = 'cover';
+  renderCover();
+  window.scrollTo(0, 0);
+}
+
+// Expose for inline handlers
+window.startTest = startTest;
+window.startMarking = startMarking;
+window.goToTest = goToTest;
+window.goToMarking = goToMarking;
+window.goToResults = goToResults;
+window.restartTest = restartTest;
+window.setMark = setMark;
+
+// Init
+renderCover();
+</script>
+</body>
+</html>
