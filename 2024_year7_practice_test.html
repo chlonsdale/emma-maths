@@ -282,6 +282,43 @@
   .weak-spots h4 { color: #92400e; margin-bottom: 8px; }
   .weak-spots ul { padding-left: 20px; }
 
+  .section-progress {
+    background: #ede9fe; color: #5b21b6;
+    padding: 8px 18px; border-radius: 20px;
+    font-weight: 600; font-size: 14px;
+    text-align: center;
+    margin: 0 auto 14px auto;
+    display: block;
+    width: fit-content;
+    max-width: 90%;
+  }
+  .section-summary {
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+    border: 2px solid #c4b5fd;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .section-summary .label {
+    font-size: 14px; color: #5b21b6; font-weight: 600;
+  }
+  .section-summary .big-score-inline {
+    font-size: 28px; font-weight: 800; color: #7c3aed;
+  }
+  .section-summary .big-score-inline .total {
+    color: #a78bfa; font-size: 20px;
+  }
+  .section-summary .pct-pill {
+    background: white; color: #5b21b6;
+    padding: 4px 12px; border-radius: 12px;
+    font-size: 13px; font-weight: 700;
+  }
+
   .hidden { display: none !important; }
 
   @media (max-width: 600px) {
@@ -799,11 +836,12 @@ function renderCover() {
       <div class="instructions">
         <h3>How this works</h3>
         <ul>
-          <li><strong>Do all questions first.</strong> Like a real exam — no answers shown as you go.</li>
+          <li><strong>You'll do the test in two parts.</strong> Section I first (no calculator), then Section II (calculator allowed).</li>
+          <li><strong>No feedback while you're doing it.</strong> Like a real exam — answers come after each section.</li>
           <li>For questions that need <strong>drawing</strong> (e.g. drawing an angle, shading a shape), do them on paper. You'll just tick them off afterwards.</li>
-          <li>At the end, click <strong>Show answers &amp; mark</strong>. You'll see the correct answer next to yours and mark each one yourself.</li>
-          <li>You'll get a final score with a breakdown showing your weak spots.</li>
-          <li>Section I should be done <strong>without a calculator</strong>. Calculator is allowed for Section II.</li>
+          <li>At the end of each section, click <strong>Show answers &amp; mark</strong>. You'll see the correct answer next to yours and mark each one.</li>
+          <li>After marking Section I, you can take a break before starting Section II.</li>
+          <li>At the very end you'll get a final score with a breakdown showing your weak spots.</li>
         </ul>
       </div>
 
@@ -814,34 +852,36 @@ function renderCover() {
 }
 
 // ============================================================
-// Render: Test mode
+// Render: Test mode (one section at a time)
 // ============================================================
 function renderTest() {
-  let html = '';
-  TEST.sections.forEach((sec, secIdx) => {
-    html += `<div class="section-card">
-      <div class="section-header">
-        <h2>${sec.name}</h2>
-        <div>
-          <span class="badge">${sec.marks} marks</span>
-          <span class="badge">${sec.timing}</span>
-        </div>
-      </div>`;
-    sec.topics.forEach(t => {
-      html += `<div class="topic-banner">${t.name}</div>`;
-      t.questions.forEach(q => {
-        html += renderQuestion(q);
-      });
+  const sec = TEST.sections[state.currentSection];
+  const sectionNum = state.currentSection + 1;
+  const totalSections = TEST.sections.length;
+
+  let html = `<div class="section-progress">Section ${sectionNum} of ${totalSections} · ${sec.name.replace(/^Section [IVX]+\s*[—-]\s*/, '')}</div>`;
+  html += `<div class="section-card">
+    <div class="section-header">
+      <h2>${sec.name}</h2>
+      <div>
+        <span class="badge">${sec.marks} marks</span>
+        <span class="badge">${sec.timing}</span>
+      </div>
+    </div>`;
+  sec.topics.forEach(t => {
+    html += `<div class="topic-banner">${t.name}</div>`;
+    t.questions.forEach(q => {
+      html += renderQuestion(q);
     });
-    html += `</div>`;
   });
+  html += `</div>`;
   html += `
     <div class="section-card" style="text-align:center;">
-      <h3 style="color:#7c3aed;margin-bottom:8px;">Finished?</h3>
+      <h3 style="color:#7c3aed;margin-bottom:8px;">Finished Section ${sectionNum}?</h3>
       <p style="color:#6b7280;margin-bottom:14px;font-size:14px">
         When you've done your best on every question, hit the button below to see the answers and mark your work.
       </p>
-      <button class="btn btn-success" onclick="startMarking()">Show answers &amp; mark</button>
+      <button class="btn btn-success" onclick="startMarking()">Show answers &amp; mark Section ${sectionNum}</button>
     </div>
   `;
   document.getElementById('root').innerHTML = html;
@@ -943,12 +983,39 @@ function attachAnswerHandlers() {
 }
 
 // ============================================================
-// Render: Marking
+// Render: Marking (one section at a time)
 // ============================================================
+function sectionScore(secIdx) {
+  let earned = 0, total = 0;
+  const sec = TEST.sections[secIdx];
+  sec.topics.forEach(t => t.questions.forEach(q => {
+    total += q.marks;
+    if (q.parts) {
+      const perPart = q.marks / q.parts.length;
+      q.parts.forEach(p => {
+        const mk = state.marks[q.id + '.' + p.id];
+        if (mk === 'right') earned += perPart;
+        else if (mk === 'half') earned += perPart / 2;
+      });
+    } else {
+      const mk = state.marks[q.id];
+      if (mk === 'right') earned += q.marks;
+      else if (mk === 'half') earned += q.marks / 2;
+    }
+  }));
+  return { earned: Math.round(earned * 2) / 2, total };
+}
+
 function renderMarking() {
+  const sec = TEST.sections[state.currentSection];
+  const sectionNum = state.currentSection + 1;
+  const totalSections = TEST.sections.length;
+  const isLastSection = state.currentSection === totalSections - 1;
+
   let html = `
+    <div class="section-progress">Section ${sectionNum} of ${totalSections} · Marking</div>
     <div class="marking-card">
-      <h2 style="color:#7c3aed;margin-bottom:6px">Mark your work</h2>
+      <h2 style="color:#7c3aed;margin-bottom:6px">Mark your work — ${sec.name}</h2>
       <div class="marking-instructions">
         <strong>How to mark:</strong> For each question, compare YOUR answer to the CORRECT answer.
         Click <strong>✓ Right</strong>, <strong>± Half</strong> (if you got some but not all of the marks),
@@ -956,17 +1023,48 @@ function renderMarking() {
       </div>
   `;
 
-  allQuestionsFlat().forEach(q => {
-    html += renderMarkBlock(q);
+  // Only mark questions in current section
+  sec.topics.forEach(t => {
+    t.questions.forEach(q => {
+      html += renderMarkBlock({ ...q, section: sec.name, topic: t.name });
+    });
   });
 
+  // Section-level running score
+  const { earned, total } = sectionScore(state.currentSection);
+  const pct = total > 0 ? Math.round((earned / total) * 100) : 0;
   html += `
-      <div style="margin-top:20px;text-align:center;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
-        <button class="btn btn-secondary btn-small" onclick="goToTest()">← Back to test</button>
-        <button class="btn" onclick="goToResults()">See my score</button>
+    <div class="section-summary">
+      <div>
+        <div class="label">Section ${sectionNum} score:</div>
+        <div class="big-score-inline">${earned} <span class="total">/ ${total}</span></div>
       </div>
+      <div class="pct-pill">${pct}%</div>
     </div>
   `;
+
+  // Bottom actions
+  if (isLastSection) {
+    html += `
+      <div style="margin-top:20px;text-align:center;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-small" onclick="goToTest()">← Back to questions</button>
+        <button class="btn" onclick="goToResults()">See final results →</button>
+      </div>
+    </div>
+    `;
+  } else {
+    html += `
+      <div style="margin-top:20px;text-align:center;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-small" onclick="goToTest()">← Back to questions</button>
+        <button class="btn" onclick="nextSection()">Continue to Section ${sectionNum + 1} →</button>
+      </div>
+      <p style="margin-top:10px;text-align:center;font-size:13px;color:#6b7280;">
+        Tip: feel free to take a break before starting the next section.
+      </p>
+    </div>
+    `;
+  }
+
   document.getElementById('root').innerHTML = html;
 }
 
@@ -1220,15 +1318,26 @@ function renderResults() {
 // ============================================================
 // Navigation
 // ============================================================
-function startTest() { state.mode = 'test'; renderTest(); window.scrollTo(0, 0); }
+function startTest() { state.currentSection = 0; state.mode = 'test'; renderTest(); window.scrollTo(0, 0); }
 function startMarking() { state.mode = 'marking'; renderMarking(); window.scrollTo(0, 0); }
 function goToTest() { state.mode = 'test'; renderTest(); window.scrollTo(0, 0); }
 function goToMarking() { state.mode = 'marking'; renderMarking(); window.scrollTo(0, 0); }
 function goToResults() { state.mode = 'results'; renderResults(); window.scrollTo(0, 0); }
+function nextSection() {
+  if (state.currentSection < TEST.sections.length - 1) {
+    state.currentSection += 1;
+    state.mode = 'test';
+    renderTest();
+    window.scrollTo(0, 0);
+  } else {
+    goToResults();
+  }
+}
 function restartTest() {
   if (!confirm('This will clear all your answers and start fresh. Continue?')) return;
   state.answers = {};
   state.marks = {};
+  state.currentSection = 0;
   state.mode = 'cover';
   renderCover();
   window.scrollTo(0, 0);
@@ -1240,6 +1349,7 @@ window.startMarking = startMarking;
 window.goToTest = goToTest;
 window.goToMarking = goToMarking;
 window.goToResults = goToResults;
+window.nextSection = nextSection;
 window.restartTest = restartTest;
 window.setMark = setMark;
 
