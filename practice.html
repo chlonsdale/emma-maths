@@ -1460,7 +1460,14 @@ function renderMenu() {
       </div>
     `;
   }).join('');
-  document.getElementById('menu').innerHTML = html;
+  const downloadBtn = `
+    <div style="grid-column: 1 / -1; text-align: center; margin-top: 8px;">
+      <button class="btn btn-secondary" style="padding:10px 20px;font-size:14px" onclick="downloadResults()">
+        \ud83d\udce5 Download my progress (.txt for Dad)
+      </button>
+    </div>
+  `;
+  document.getElementById('menu').innerHTML = html + downloadBtn;
 }
 
 function openActivity(id) {
@@ -1507,6 +1514,51 @@ function toast(msg, success = true) {
 }
 
 // ============================================================
+// Download progress as plain text
+// ============================================================
+function downloadResults() {
+  const now = new Date();
+  const dateStr = now.toISOString().split('T')[0];
+  const timeStr = now.toTimeString().split(' ')[0].substring(0, 5);
+  const masteredCount = Object.values(state.activities).filter(a => a.mastered).length;
+
+  const L = [];
+  L.push('============================================================');
+  L.push("Emma's Maths Practice Activities — Progress Report");
+  L.push('============================================================');
+  L.push(`Generated:           ${dateStr} ${timeStr}`);
+  L.push(`Total correct:       ${state.totalCorrect} questions`);
+  L.push(`Activities mastered: ${masteredCount} / ${ACTIVITIES.length}`);
+  L.push('');
+  L.push('PER-ACTIVITY PROGRESS');
+  L.push('------------------------------------------------------------');
+  ACTIVITIES.forEach(a => {
+    const s = state.activities[a.id] || { correct: 0, total: 0, mastered: false };
+    const pct = s.total > 0 ? Math.round((s.correct / s.total) * 100) : 0;
+    const status = s.mastered ? 'MASTERED' : (s.total === 0 ? 'not started' : 'in progress');
+    L.push('');
+    L.push(`  ${a.title}  (${a.focus})`);
+    L.push(`    ${s.correct} correct / ${s.total} attempts (${pct}%)  -  Goal: ${a.masterTarget} correct  -  [${status}]`);
+  });
+  L.push('');
+  L.push('------------------------------------------------------------');
+  L.push('Note: progress resets when the page is closed/reloaded.');
+  L.push('To save progress across sessions, download this report.');
+  L.push('');
+
+  const txt = L.join('\n');
+  const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `emma_practice_activities_${dateStr}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 200);
+}
+
+// ============================================================
 // Init
 // ============================================================
 renderMenu();
@@ -1524,6 +1576,7 @@ window.buildTypesActivity = buildTypesActivity;
 window.buildFractionsActivity = buildFractionsActivity;
 window.buildIndicesActivity = buildIndicesActivity;
 window.buildParallelsActivity = buildParallelsActivity;
+window.downloadResults = downloadResults;
 </script>
 </body>
 </html>

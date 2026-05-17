@@ -1332,12 +1332,139 @@ function renderResults() {
 
       <div style="margin-top:20px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
         <button class="btn btn-secondary btn-small" onclick="goToMarking()">← Re-mark</button>
+        <button class="btn btn-success btn-small" onclick="downloadResults()">📥 Download results (.txt)</button>
         <button class="btn btn-small" onclick="restartTest()">Take it again</button>
       </div>
     </div>
   `;
   document.getElementById('root').innerHTML = html;
 }
+
+// ============================================================
+// Download results as plain text
+// ============================================================
+function downloadResults() {
+  const total = totalMarks();
+  const earned = scoreSoFar();
+  const pct = total > 0 ? Math.round((earned / total) * 100) : 0;
+  const now = new Date();
+  const dateStr = now.toISOString().split('T')[0];
+  const timeStr = now.toTimeString().split(' ')[0].substring(0, 5);
+  const stripHtml = s => String(s || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  const symbolOf = mk => mk === 'right' ? '[v]' : mk === 'half' ? '[~]' : mk === 'wrong' ? '[x]' : '[ ]';
+
+  const L = [];
+  L.push('============================================================');
+  L.push(TEST.title);
+  L.push('============================================================');
+  L.push(`Completed:  ${dateStr} ${timeStr}`);
+  L.push(`Score:      ${earned} / ${total} (${pct}%)`);
+  L.push('');
+  L.push('SECTION SCORES');
+  L.push('------------------------------------------------------------');
+  TEST.sections.forEach((sec, idx) => {
+    const ss = sectionScore(idx);
+    const sp = ss.total > 0 ? Math.round((ss.earned / ss.total) * 100) : 0;
+    L.push(`  ${sec.name}: ${ss.earned} / ${ss.total}  (${sp}%)`);
+  });
+  L.push('');
+  L.push('TOPIC BREAKDOWN');
+  L.push('------------------------------------------------------------');
+  TEST.sections.forEach(sec => {
+    sec.topics.forEach(t => {
+      let te = 0, tt = 0;
+      t.questions.forEach(q => {
+        tt += q.marks;
+        if (q.parts) {
+          const pp = q.marks / q.parts.length;
+          q.parts.forEach(p => {
+            const mk = state.marks[q.id + '.' + p.id];
+            if (mk === 'right') te += pp;
+            else if (mk === 'half') te += pp / 2;
+          });
+        } else {
+          const mk = state.marks[q.id];
+          if (mk === 'right') te += q.marks;
+          else if (mk === 'half') te += q.marks / 2;
+        }
+      });
+      const tp = tt > 0 ? Math.round((te / tt) * 100) : 0;
+      L.push(`  ${t.name}: ${te} / ${tt}  (${tp}%)`);
+    });
+  });
+  L.push('');
+  L.push('QUESTION-BY-QUESTION DETAIL');
+  L.push('------------------------------------------------------------');
+  TEST.sections.forEach(sec => {
+    L.push('');
+    L.push(`[${sec.name}]`);
+    sec.topics.forEach(t => {
+      L.push(`  --- ${t.name} ---`);
+      t.questions.forEach(q => {
+        const qPrompt = stripHtml(q.prompt);
+        if (q.parts) {
+          L.push(`  Q${q.num} (${q.marks} mark${q.marks > 1 ? 's' : ''}): ${qPrompt}`);
+          q.parts.forEach(p => {
+            const key = q.id + '.' + p.id;
+            let ans;
+            if (p.inputType === 'numericPlusReason') {
+              const v = state.answers[key + '.value'] || '';
+              const r = state.answers[key + '.reason'] || '';
+              ans = `value="${v}" reason="${r}"`;
+            } else {
+              ans = `"${state.answers[key] || ''}"`;
+            }
+            const mk = state.marks[key] || '';
+            L.push(`    ${symbolOf(mk)} ${p.label || ''} ${stripHtml(p.prompt)}`);
+            L.push(`        her: ${ans}`);
+            L.push(`        ans: "${p.correct}"`);
+          });
+        } else {
+          const key = q.id;
+          let ans;
+          if (q.type === 'numericPlusReason') {
+            const v = state.answers[key + '.value'] || '';
+            const r = state.answers[key + '.reason'] || '';
+            ans = `value="${v}" reason="${r}"`;
+          } else if (q.type === 'mc') {
+            const picked = state.answers[key] || '';
+            const opt = (q.options || []).find(o => o.label === picked);
+            ans = picked ? `"${picked} — ${opt ? opt.text : ''}"` : '""';
+          } else if (q.type === 'draw') {
+            ans = state.answers[key] === 'done' ? '"(marked done on paper)"' : '"(not marked done)"';
+          } else {
+            ans = `"${state.answers[key] || ''}"`;
+          }
+          const mk = state.marks[key] || '';
+          L.push(`    ${symbolOf(mk)} Q${q.num} (${q.marks} mark${q.marks > 1 ? 's' : ''}): ${qPrompt}`);
+          L.push(`        her: ${ans}`);
+          if (q.correctDesc) {
+            L.push(`        ans: "${q.correctDesc}"`);
+          } else {
+            L.push(`        ans: "${q.correct}"`);
+          }
+        }
+      });
+    });
+  });
+  L.push('');
+  L.push('------------------------------------------------------------');
+  L.push('Legend: [v] right  [~] half  [x] wrong  [ ] not marked');
+  L.push('');
+
+  const txt = L.join('\n');
+  const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const safeName = String(TEST.year || 'test').replace(/[^a-z0-9-]+/gi, '_').toLowerCase();
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `emma_${safeName}_results_${dateStr}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 200);
+}
+
 
 // ============================================================
 // Navigation
@@ -1376,6 +1503,7 @@ window.goToResults = goToResults;
 window.nextSection = nextSection;
 window.restartTest = restartTest;
 window.setMark = setMark;
+window.downloadResults = downloadResults;
 
 // Init
 renderCover();
